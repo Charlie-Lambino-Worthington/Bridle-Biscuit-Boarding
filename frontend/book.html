@@ -41,8 +41,18 @@
         </div>
       </nav> 
       <section class="container-fluid">
-      
+        <div class="spacing"></div>
+        <h1>Bridles & Biscuits Booking Form</h1>
 
+        <form action="" method="post">
+    
+            {% csrf_token %}
+    
+            {{ form.as_p }}
+    
+            <button type="submit">Submit</button>
+    
+        </form>
         </section>
       <footer>
         <!--footer-->
