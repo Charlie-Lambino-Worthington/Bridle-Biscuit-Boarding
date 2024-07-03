@@ -32,6 +32,12 @@ class Book(models.Model):
         return f"{self.horse_name} | written by {self.author}"
 
 
+class stables(models.Model):
+    stablenum = 10
+    status = STATUS
+    bookingid = Book.bookingid
+    costpernight = 150
+
 class Comment(models.Model):
     """
     Stores a single comment entry related to :model:`auth.User`
