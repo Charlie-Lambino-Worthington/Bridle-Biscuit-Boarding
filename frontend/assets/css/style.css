@@ -6,8 +6,13 @@
 body {
     padding: 0;
     background-color: #bbb3db;
+    text-align: center;
     padding-left: 0%;
     height: 100vh;
+    color: #444444;
+  }
+  .spacing {
+    padding: 45px;
   }
   /*color and padding*/
   .contact {
@@ -20,7 +25,7 @@ body {
   }
 
   h1 {
-    color:#3819b6 ;
+    color:#444444 ;
   }
 /*navbar and footer*/
 nav{
