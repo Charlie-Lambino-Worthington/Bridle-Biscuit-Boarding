@@ -76,16 +76,21 @@ class CheckAvailabilityMixin:
         return True
 
 
-class Booking(LoginRequiredMixin, CheckAvailabilityMixin):
+class Booking(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
     template_name = "static/book.html"
     def book(self, request, *args, **kwargs):
         form = BookForm(request.Book)
-        if form.is_valid():
-            review = form.save(commit=False)
-            Booking.author = request.user
-            Booking.save()
-            messages.add_message(request, messages.SUCCESS, 'New booking created!')
-            return redirect("static/book.html")
-        else:
-            messages.add_message(request, messages.ERROR, 'Error creating booking.')
-            return self.get(request, *args, **kwargs)
+
+        def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        self.check_stable_availability(form.cleaned_data['stable'], form.cleaned_data['stay_start'], form.cleaned_data['stay_end'])
+        if not self.check_stable_availability(form.cleaned_data['stable'], form.cleaned_data['stay_start'], form.cleaned_data['stay_end']):
+            return self.form_invalid(form)
+        
+        # Save the booking
+        booking = form.save(commit=False)
+        booking.user = self.request.user
+        booking.save()
+        messages.success(self.request, 'Booking successful!')
+        return super().form_valid(form)
