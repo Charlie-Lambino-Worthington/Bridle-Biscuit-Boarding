@@ -9,23 +9,22 @@
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
-                {% for review in reviewlist %}
+                {% for booking in bookinglist %}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="image-container">
-                                {% if "placeholder" in review.featured_image.url %}
-                                <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
-                                {% else %}
-                                <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}">
-                                {% endif %}
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ review.author }}</p>
+                                    <p class="author">Owner: {{ booking.user }}</p>
                                 </div>
                             </div>
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                                <h2 class="card-title">{{review.title }}</h2>
-                                <p class="card-text">{{ review.comment }}</p>
+                                <h2 class="card-title">{{booking.horse_name }}</h2>
+                                <p class="card-text">{{ booking.feeding_requirements }}</p>
+                                <p class="card-text">{{ booking.exercise_requirements }}</p>
+                                <p class="card-text">{{ booking.stay_start }}</p>
+                                <p class="card-text">{{ booking.stay_end }}</p>
+                                <p class="card-text">{{ booking.number_nights }}</p>
+                                <p class="card-text">{{ booking.bookingid }}</p>
+                                <p class="card-text">{{ booking.cost }}</p>
                             </a>
 
                             <hr>
