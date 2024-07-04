@@ -42,11 +42,12 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.horse_name} | written by {self.userid}"
 
-class review(models.Model):
+class Review(models.Model):
     """
     Stores a single comment entry related to :model:`auth.User`
     and :model:`blog.Post`.
     """
+    title = models.CharField(max_length=200)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="commenter")
     rating = models.IntegerField(default=0)
