@@ -1,4 +1,4 @@
-![CI logo](static/assets/images/logo.png)
+![logo](static/assets/images/logo.png)
 
 # Bridles & Biscuits Boarding
 
@@ -223,3 +223,18 @@ o   Ability to leave a star rating and review when logged in
 o   Only able to leave a review with a valid booking id so users know all reviews are from real previous customers
 
 o   Booking IDs not displayed with the reviews
+
+
+
+
+
+
+
+
+
+## Database Diagram
+Bridle & Biscuit Boarding's database is composed of several distinct tables, each serving a specific purpose. The tables are comprised of Users, Book, Stable_availability, Stables, Review. Together, they allow potential customers to easily complete CRUD functionality (Create, Read, Update, Delete) through an intuitive web-based user interface.
+
+The User table is key to the interconnectivity of the backend of the application. It connects other tables through foreign key relationships,allowing for the functionality and cohesion of the system. Within the database, the book model and Reviews model  are linked to users through  Foreign Key relationships, allowing users access to view and delete bookings as well as create, edit, and delete reviews associated with their account.
+
+![Database schema](static/assets/images/stablesbooking.png)
