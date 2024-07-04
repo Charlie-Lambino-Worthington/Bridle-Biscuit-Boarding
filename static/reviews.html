@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <!-- index.html content starts here -->
@@ -48,7 +49,7 @@
     
         {% csrf_token %}
 
-        {{ form.as_p }}
+        {{ reviewform | crispy }}
 
         <button type="submit">Submit</button>
 
