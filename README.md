@@ -18,7 +18,15 @@ Target audience: Horse or Donkey owners who normally keep their Horses and Donke
 
 ### Live Project Link
 
-# User stories / Use Cases
+
+# Agile Development
+I planned and tracked progress on this project using Agile methodology. I created a kanban board with GitHub Projects to manage the workload. 
+After setting up the user stories as issues for my project I broke them down into smaller tasks with check boxes within each user story, to help me monitor my progress and finish all tasks on time.
+
+To see the Kanban for the Bridles & Biscuits  Boarding project please click here: https://github.com/users/Charlie-Lambino-Worthington/projects/4
+
+
+## User stories / Use Cases
 
 User story:
 
