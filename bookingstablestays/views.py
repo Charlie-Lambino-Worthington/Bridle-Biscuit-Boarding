@@ -17,7 +17,7 @@ from .forms import PostForm
 # Create your views here.
 
 class Reviewlist(LoginRequiredMixin, generic.ListView):
-    template_name = "frontend/reviews.html"
+    template_name = "static/reviews.html"
     paginate_by = 6
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
@@ -27,7 +27,7 @@ class Reviewlist(LoginRequiredMixin, generic.ListView):
         context['form'] = ReviewForm()
         return context
 
-    def post(self, request, *args, **kwargs):
+    def review(self, request, *args, **kwargs):
         form = ReviewForm(request.Review)
         if form.is_valid():
             review = form.save(commit=False)
@@ -39,3 +39,16 @@ class Reviewlist(LoginRequiredMixin, generic.ListView):
             messages.add_message(request, messages.ERROR, 'Error creating review.')
             return self.get(request, *args, **kwargs)
 
+class Booking(LoginRequiredMixin):
+    template_name = "static/book.html"
+    def book(self, request, *args, **kwargs):
+        form = BookForm(request.Book)
+        if form.is_valid():
+            review = form.save(commit=False)
+            Booking.author = request.user
+            Booking.save()
+            messages.add_message(request, messages.SUCCESS, 'New booking created!')
+            return redirect("static/book.html")
+        else:
+            messages.add_message(request, messages.ERROR, 'Error creating booking.')
+            return self.get(request, *args, **kwargs)
