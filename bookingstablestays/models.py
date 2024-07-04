@@ -5,61 +5,58 @@ from cloudinary.models import CloudinaryField
 STATUS = ((0, "unbooked"), (1, "booked"))
 
 # Create your models here.
+class stables(models.Model):
+    stable_num = 10
+    status = STATUS
+    costpernight = 150
 
+class stable_availability(models.Model):
+    id = models.IntegerField()
+    stable_id = models.ForeignKey(stables.stable_num)
+    start_date = models.DateField()
+    end_date = models.DateField
 
 class Book(models.Model):
     """
     Stores a single booking entry related to :model:`auth.User`.
     """
-    horse_name = models.CharField(max_length=200, unique=True)
-    bookingid = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(
+    userid = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="book_posts"
     )
+    horse_name = models.CharField(max_length=200, unique=True)
     feeding_requirements = models.TextField()
     exercise_requirements = models.TextField()
     staystart = models.DateField()
     stayend = models.DateField()
-    number_nights =
-    created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-    updated_on = models.DateTimeField(auto_now=True)
+    number_nights = models.IntegerField()
+    booked_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=1)
+    bookingid = models.SlugField(max_length=200, unique=True)
+    email = models.EmailField()
+    cost = models.ForeignKey(stables.costpernight * Book.number_nights)
+    stable_id = stables.stable_num
 
     class Meta:
         ordering = ["-created_on"]
 
     def __str__(self):
-        return f"{self.horse_name} | written by {self.author}"
+        return f"{self.horse_name} | written by {self.userid}"
 
-
-class stables(models.Model):
-    stablenum = 10
-    status = STATUS
-    bookingid = Book.bookingid
-    costpernight = 150
-
-class Comment(models.Model):
+class review(models.Model):
     """
     Stores a single comment entry related to :model:`auth.User`
     and :model:`blog.Post`.
     """
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,
-                             related_name="comments")
-    author = models.ForeignKey(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="commenter")
-       def average_rating(self) -> float:
-        return Rating.objects.filter(post=self).aggregate(Avg("rating"))["rating__avg"] or 0
-
-    def __str__(self):
-        return f"{self.header}: {self.average_rating()}"
-   
-    body = models.TextField()
+    rating = models.IntegerField(default=0)
+    comment = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
+    bookingid = Book.bookingid
 
     class Meta:
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Comment {self.body} by {self.author}"
+        return f"review {self.rating, self.comment, self.featured_image, self.created_on} by {self.author}"
