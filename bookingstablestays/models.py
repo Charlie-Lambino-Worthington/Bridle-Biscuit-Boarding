@@ -1,18 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.utils import timezone
+from django.contrib import messages
 
 STATUS = ((0, "unbooked"), (1, "booked"))
 
 # Create your models here.
 class stables(models.Model):
-    stable_num = 10
-    status = STATUS
-    costpernight = 150
+    stable_num = models.IntegerField(default=10)
+    status = models.IntegerField(choices=STATUS, default=0)
+    cost_per_night = models.DecimalField(max_digits=5, decimal_places=2, default=150)
 
 class stable_availability(models.Model):
-    id = models.IntegerField()
-    stable_id = models.ForeignKey(stables.stable_num)
+    stable = models.ForeignKey(stables)
     start_date = models.DateField()
     end_date = models.DateField
 
@@ -20,21 +21,21 @@ class Book(models.Model):
     """
     Stores a single booking entry related to :model:`auth.User`.
     """
-    userid = models.ForeignKey(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="book_posts"
     )
-    horse_name = models.CharField(max_length=200, unique=True)
+    horse_name = models.CharField(max_length=200)
     feeding_requirements = models.TextField()
     exercise_requirements = models.TextField()
-    staystart = models.DateField()
-    stayend = models.DateField()
+    stay_start = models.DateField()
+    stay_end = models.DateField()
     number_nights = models.IntegerField()
     booked_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=1)
     bookingid = models.SlugField(max_length=200, unique=True)
     email = models.EmailField()
-    cost = models.ForeignKey(stables.costpernight * Book.number_nights)
-    stable_id = stables.stable_num
+    cost = models.ForeignKey(stables.costpernight) * self.number_nights
+    stable_id = models.ForeignKey(Stables, on_delete=models.CASCADE, related_name="bookings")
 
     class Meta:
         ordering = ["-created_on"]
