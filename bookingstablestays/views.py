@@ -23,7 +23,7 @@ class facilities():
     return "static/facilities.html"
 
 
-class Reviewlist(LoginRequiredMixin, generic.ListView):
+class reviewlist(LoginRequiredMixin, generic.ListView):
     template_name = "static/reviews.html"
     paginate_by = 6
     def get_queryset(self):
@@ -84,7 +84,7 @@ class Booking(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
         def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
-        self.check_stable_availability(form.cleaned_data['stable'], form.cleaned_data['stay_start'], form.cleaned_data['stay_end'])
+            self.check_stable_availability(form.cleaned_data['stable'], form.cleaned_data['stay_start'], form.cleaned_data['stay_end'])
         if not self.check_stable_availability(form.cleaned_data['stable'], form.cleaned_data['stay_start'], form.cleaned_data['stay_end']):
             return self.form_invalid(form)
         
