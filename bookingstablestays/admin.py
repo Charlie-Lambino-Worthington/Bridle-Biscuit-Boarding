@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Book, stables, stable_availability, Review
+from .models import Book, Stables, Stable_availability, Review
 from django_summernote.admin import SummernoteModelAdmin
 
-@admin.register(Book)
+@admin.register(Book, Review, Stables, Stable_availability )
 class PostAdmin(SummernoteModelAdmin):
 
     list_display = ('horse_name', 'status', 'created_on')
@@ -13,4 +13,4 @@ class PostAdmin(SummernoteModelAdmin):
 
 
 # Register your models here.
-admin.site.register(Review, stables, stable_availability )
+admin.site.register(Book, Review, Stables, Stable_availability)

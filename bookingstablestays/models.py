@@ -7,12 +7,12 @@ from django.contrib import messages
 STATUS = ((0, "unbooked"), (1, "booked"))
 
 # Create your models here.
-class stables(models.Model):
+class Stables(models.Model):
     stable_num = models.IntegerField(default=10)
     status = models.IntegerField(choices=STATUS, default=0)
     cost_per_night = models.DecimalField(max_digits=5, decimal_places=2, default=150)
 
-class stable_availability(models.Model):
+class Stable_availability(models.Model):
     stable = models.ForeignKey(stables)
     start_date = models.DateField()
     end_date = models.DateField
