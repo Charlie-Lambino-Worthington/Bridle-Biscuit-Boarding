@@ -43,6 +43,19 @@ class ReviewListView(LoginRequiredMixin, generic.ListView):
             messages.add_message(request, messages.ERROR, 'Error creating review.')
             return self.get(request, *args, **kwargs)
 
+class BookingListView(LoginRequiredMixin, generic.ListView):
+    model = Book
+    template_name = "templates/yourbookings.html"
+    paginate_by = 6
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = BookForm()
+        return context
+
+
 class CheckAvailabilityMixin:
     def check_stable_availability(self, stable, stay_start, stay_end, current_booking=0):
         # Convert dates to datetime objects for comparison
