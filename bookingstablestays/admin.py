@@ -2,18 +2,32 @@ from django.contrib import admin
 from .models import Book, Stables, Stable_availability, Review
 from django_summernote.admin import SummernoteModelAdmin
 
-@admin.register(Book, Review, Stables, Stable_availability )
+# Custom admin class for the Book model
+@admin.register(Book)
 class BookAdmin(SummernoteModelAdmin):
-
-    list_display = ('horse_name', 'status', 'created_on')
+    list_display = ('horse_name', 'status', 'booked_on')
     search_fields = ['horse_name', 'bookingid']
-    list_filter = ('status', 'created_on',)
-    prepopulated_fields = {'bookingid': ('horse_name','created_on')}
+    list_filter = ('status', 'booked_on')
+    prepopulated_fields = {'bookingid': ('horse_name', 'booked_on')}
     summernote_fields = ('feeding_requirements', 'exercise_requirements')
 
+# Custom admin class for the Review model
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('title', 'user', 'rating', 'created_on')
+    search_fields = ['title', 'user__username']
+    list_filter = ('rating', 'created_on')
 
-# Register your models here.
+# Custom admin class for the Stables model
+@admin.register(Stables)
+class StablesAdmin(admin.ModelAdmin):
+    list_display = ('stable_num', 'status', 'cost_per_night')
+    search_fields = ['stable_num']
+    list_filter = ('status',)
 
-admin.site.register(Review)
-admin.site.register(Stable_availability)
-admin.site.register(Stables)
+# Custom admin class for the StableAvailability model
+@admin.register(Stable_availability)
+class StableAvailabilityAdmin(admin.ModelAdmin):
+    list_display = ('stable', 'start_date', 'end_date')
+    search_fields = ['stable__stable_num']
+    list_filter = ('start_date', 'end_date')

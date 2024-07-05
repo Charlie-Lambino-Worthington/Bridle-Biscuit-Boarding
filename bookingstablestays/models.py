@@ -43,6 +43,7 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.horse_name} | booked by {self.user.username}"
 
+class Review(models.Model):   
     """
     Stores a single review entry related to :model:`auth.User` and :model:`Book`.
     """
@@ -52,7 +53,7 @@ class Book(models.Model):
     comment = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
-    bookingid = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="reviews")
+    bookingid = models.ForeignKey('Book', on_delete=models.CASCADE, related_name="reviews")
 
     class Meta:
         ordering = ["created_on"]
