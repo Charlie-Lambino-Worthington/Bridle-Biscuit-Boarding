@@ -10,12 +10,12 @@ STATUS = ((0, "unbooked"), (1, "booked"))
 class Stables(models.Model):
     stable_num = models.IntegerField(default=10)
     status = models.IntegerField(choices=STATUS, default=0)
-    cost_per_night = models.DecimalField(max_digits=5, decimal_places=2, default=150)
+    cost_per_night = models.DecimalField(max_digits=6, decimal_places=2, default=150)
 
 class Stable_availability(models.Model):
-    stable = models.ForeignKey(stables)
+    stable = models.ForeignKey(Stables, on_delete=models.CASCADE )
     start_date = models.DateField()
-    end_date = models.DateField
+    end_date = models.DateField()
 
 class Book(models.Model):
     """
@@ -34,7 +34,7 @@ class Book(models.Model):
     status = models.IntegerField(choices=STATUS, default=1)
     bookingid = models.SlugField(max_length=200, unique=True)
     email = models.EmailField()
-    cost = models.ForeignKey(stables.costpernight) * self.number_nights
+    cost = models.ForeignKey(Stables, on_delete=models.CASCADE, related_name="book_costs")
     stable_id = models.ForeignKey(Stables, on_delete=models.CASCADE, related_name="bookings")
 
     class Meta:

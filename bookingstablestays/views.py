@@ -1,29 +1,26 @@
-from django.views import generic
-from django.views import View
+from django.views import generic, View
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from .models import book, review
 from .forms import BookForm, ReviewForm
 from django.db.models import Q
-
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .models import Post
-from .forms import PostForm
+from django.views.generic.edit import FormView
+
 
 # Create your views here.
-class homepage():
-    return "static/index.html"
+class homepage(request):
+    return  render(request, "static/index.html")
 
-class facilities():
-    return "static/facilities.html"
+class facilities(request):
+    return render(request, "static/facilities.html")
 
 
 class reviewlist(LoginRequiredMixin, generic.ListView):
+    model = Review
     template_name = "static/reviews.html"
     paginate_by = 6
     def get_queryset(self):
@@ -34,7 +31,7 @@ class reviewlist(LoginRequiredMixin, generic.ListView):
         context['form'] = ReviewForm()
         return context
 
-    def review(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         form = ReviewForm(request.Review)
         if form.is_valid():
             review = form.save(commit=False)
@@ -79,7 +76,7 @@ class CheckAvailabilityMixin:
 class Booking(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
     template_name = "static/book.html"
     def book(self, request, *args, **kwargs):
-        form = BookForm(request.Book)
+        form = BookForm
 
         def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
