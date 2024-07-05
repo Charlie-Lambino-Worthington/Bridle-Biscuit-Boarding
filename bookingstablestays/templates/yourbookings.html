@@ -13,7 +13,7 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                                    <p class="author">Owner: {{ booking.user }}</p>
+                                    <p class="author">Booking: {{ booking.bookingid }}</p>
                                 </div>
                             </div>
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
@@ -23,8 +23,7 @@
                                 <p class="card-text">{{ booking.stay_start }}</p>
                                 <p class="card-text">{{ booking.stay_end }}</p>
                                 <p class="card-text">{{ booking.number_nights }}</p>
-                                <p class="card-text">{{ booking.bookingid }}</p>
-                                <p class="card-text">{{ booking.cost }}</p>
+                                <p class="card-text">£ {{ booking.cost }}</p>
                             </a>
 
                             <hr>

@@ -226,12 +226,22 @@ o   Booking IDs not displayed with the reviews
 
 
 
+# UX Design
+
+## Design
+## Wireframes
 
 
 
+![Index page](static/assets/images/Page_1.png)
 
+![Facilities page](static/assets/images/Page_3.png)
 
+![Booking page](static/assets/images/Page_1_Copy.png)
 
+![Your Bookings page](static/assets/images/Page_4.png)
+
+![Reviews page](static/assets/images/Page_5.png)
 ## Database Diagram
 Bridle & Biscuit Boarding's database is composed of several distinct tables, each serving a specific purpose. The tables are comprised of Users, Book, Stable_availability, Stables, Review. Together, they allow potential customers to easily complete CRUD functionality (Create, Read, Update, Delete) through an intuitive web-based user interface.
 

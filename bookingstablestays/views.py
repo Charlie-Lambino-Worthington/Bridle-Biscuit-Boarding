@@ -14,14 +14,14 @@ from django.views.generic import TemplateView
 
 # Create your views here.
 class IndexView(TemplateView):
-    template_name = "templates/index.html"
+    template_name = "index.html"
 
 class FacilitiesView(TemplateView):
-    template_name =  "templates/facilities.html"
+    template_name =  "facilities.html"
 
 class ReviewListView(LoginRequiredMixin, generic.ListView):
     model = Review
-    template_name = "templates/reviews.html"
+    template_name = "reviews.html"
     paginate_by = 6
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
@@ -38,14 +38,14 @@ class ReviewListView(LoginRequiredMixin, generic.ListView):
             post.author = request.user
             post.save()
             messages.add_message(request, messages.SUCCESS, 'New review created!')
-            return redirect("templates/reviews.html")
+            return redirect("reviews.html")
         else:
             messages.add_message(request, messages.ERROR, 'Error creating review.')
             return self.get(request, *args, **kwargs)
 
 class BookingListView(LoginRequiredMixin, generic.ListView):
     model = Book
-    template_name = "templates/yourbookings.html"
+    template_name = "yourbookings.html"
     paginate_by = 6
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
@@ -87,7 +87,7 @@ class CheckAvailabilityMixin:
 
 
 class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
-    template_name = "templates/book.html"
+    template_name = "book.html"
     def book(self, request, *args, **kwargs):
         form = BookForm
 
