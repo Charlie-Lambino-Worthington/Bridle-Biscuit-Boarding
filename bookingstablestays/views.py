@@ -3,25 +3,25 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from .models import book, review
+from .models import Book, Review
 from .forms import BookForm, ReviewForm
 from django.db.models import Q
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import FormView
+from django.views.generic import TemplateView
 
 
 # Create your views here.
-class homepage(request):
-    return  render(request, "static/index.html")
+class IndexView(TemplateView):
+    template_name = "templates/index.html"
 
-class facilities(request):
-    return render(request, "static/facilities.html")
+class FacilitiesView(TemplateView):
+    template_name =  "templates/facilities.html"
 
-
-class reviewlist(LoginRequiredMixin, generic.ListView):
+class ReviewListView(LoginRequiredMixin, generic.ListView):
     model = Review
-    template_name = "static/reviews.html"
+    template_name = "templates/reviews.html"
     paginate_by = 6
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
@@ -38,7 +38,7 @@ class reviewlist(LoginRequiredMixin, generic.ListView):
             post.author = request.user
             post.save()
             messages.add_message(request, messages.SUCCESS, 'New review created!')
-            return redirect("frontend/reviews.html")
+            return redirect("templates/reviews.html")
         else:
             messages.add_message(request, messages.ERROR, 'Error creating review.')
             return self.get(request, *args, **kwargs)
@@ -73,8 +73,8 @@ class CheckAvailabilityMixin:
         return True
 
 
-class Booking(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
-    template_name = "static/book.html"
+class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
+    template_name = "templates/book.html"
     def book(self, request, *args, **kwargs):
         form = BookForm
 
