@@ -38,27 +38,24 @@ class Book(models.Model):
     stable_id = models.ForeignKey(Stables, on_delete=models.CASCADE, related_name="bookings")
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-booked_on"]
 
     def __str__(self):
-        return f"{self.horse_name} | written by {self.userid}"
+        return f"{self.horse_name} | booked by {self.user.username}"
 
-class Review(models.Model):
     """
-    Stores a single comment entry related to :model:`auth.User`
-    and :model:`blog.Post`.
+    Stores a single review entry related to :model:`auth.User` and :model:`Book`.
     """
     title = models.CharField(max_length=200)
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="commenter")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
     rating = models.IntegerField(default=0)
     comment = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
-    bookingid = Book.bookingid
+    bookingid = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="reviews")
 
     class Meta:
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"review {self.rating, self.comment, self.featured_image, self.created_on} by {self.author}"
+        return f"Review {self.rating} - {self.comment[:20]} by {self.user.username}"
