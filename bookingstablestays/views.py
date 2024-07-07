@@ -17,7 +17,7 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 class FacilitiesView(TemplateView):
-    template_name =  "facilities.html"
+    template_name = "facilities.html"
 
 class ReviewListView(LoginRequiredMixin, generic.ListView):
     model = Review

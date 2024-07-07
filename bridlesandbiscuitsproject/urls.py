@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from bookingstablestays.views import IndexView, FacilitiesView, BookingView, ReviewListView, BookingListView
 
+
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('facilities/', FacilitiesView.as_view(), name='facilities'),

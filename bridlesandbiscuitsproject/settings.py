@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-charlielamb-bridlebiscu-78fnwhdpmtf.ws-eu115.gitpod.io', '.herokuapp.com']
+ALLOWED_HOSTS = ['8000-charlielamb-bridlebiscu-zxwqypl0ivo.ws.codeinstitute-ide.net', '.herokuapp.com']
 
 
 # Application definition
@@ -75,7 +75,7 @@ ROOT_URLCONF = 'bridlesandbiscuitsproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,7 +99,7 @@ DATABASES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.8000-charlielamb-bridlebiscu-78fnwhdpmtf.ws-eu115.gitpod.io",
+    "https://8000-charlielamb-bridlebiscu-zxwqypl0ivo.ws.codeinstitute-ide.net/",
     "https://*.herokuapp.com"
 ]
 
