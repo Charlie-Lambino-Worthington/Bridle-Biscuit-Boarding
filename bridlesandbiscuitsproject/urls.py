@@ -22,8 +22,8 @@ from bookingstablestays.views import IndexView, FacilitiesView, BookingView, Rev
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('facilities/', FacilitiesView.as_view(), name='facilities'),
-    path('book/', BookingView.as_view(), name='Booking'),
-    path('bookings/', BookingListView.as_view(), name='Booking'),
-    path('reviews/', ReviewListView.as_view(), name='reviewlist'),
+    path('book/', BookingView.as_view(), name='book'),
+    path('bookings/', BookingListView.as_view(), name='yourbookings'),
+    path('reviews/', ReviewListView.as_view(), name='reviews'),
     path('admin/', admin.site.urls),
 ]
