@@ -6,7 +6,16 @@
 <!-- index.html content starts here -->
 <div class="container-fluid">
     <div class="row">
-
+        <div class="spacing"></div>
+        <form action="" method="post">
+    
+            {% csrf_token %}
+    
+            {{ review_form | crispy }}
+    
+            <button type="submit">Submit</button>
+    
+        </form>
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
@@ -18,10 +27,10 @@
                                 {% if "placeholder" in review.featured_image.url %}
                                 <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                                 {% else %}
-                                <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}">
+                                <img class="card-img-top" src=" {{ review.featured_image.url }}" alt="{{ post.title }}">
                                 {% endif %}
                                 <div class="image-flash">
-                                    <p class="author">Author: {{ review.author }}</p>
+                                    <p class="author">Author: {{ review.user }}</p>
                                 </div>
                             </div>
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">

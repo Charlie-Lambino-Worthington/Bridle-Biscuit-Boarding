@@ -8,7 +8,7 @@ STATUS = ((0, "unbooked"), (1, "booked"))
 
 # Create your models here.
 class Stables(models.Model):
-    stable_num = models.IntegerField(default=10)
+    stable_num = models.IntegerField(unique=True)
     status = models.IntegerField(choices=STATUS, default=0)
     cost_per_night = models.DecimalField(max_digits=6, decimal_places=2, default=150)
 
@@ -34,8 +34,9 @@ class Book(models.Model):
     status = models.IntegerField(choices=STATUS, default=1)
     bookingid = models.SlugField(max_length=200, unique=True)
     email = models.EmailField()
-    cost = models.ForeignKey(Stables, on_delete=models.CASCADE, related_name="book_costs")
     stable_id = models.ForeignKey(Stables, on_delete=models.CASCADE, related_name="bookings")
+   ## cost = models.ForeignKey(Stables, on_delete=models.CASCADE, related_name="book_costs")
+   ## stable_id = models.ForeignKey(Stables, on_delete=models.CASCADE, related_name="bookings")
 
     class Meta:
         ordering = ["-booked_on"]
