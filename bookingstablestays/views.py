@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -19,24 +20,25 @@ class IndexView(TemplateView):
 class FacilitiesView(TemplateView):
     template_name = "facilities.html"
 
-class ReviewListView(LoginRequiredMixin, generic.ListView):
+class ReviewListView( generic.ListView):
     model = Review
     template_name = "reviews.html"
     paginate_by = 6
     def get_queryset(self):
-        return Post.objects.filter(author=self.request.user)
+        return Review.objects.filter(user=self.request.user)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ReviewForm()
         return context
 
-    def post(self, request, *args, **kwargs):
+    @login_required
+    def review(self, request, *args, **kwargs):
         form = ReviewForm(request.Review)
         if form.is_valid():
             review = form.save(commit=False)
-            post.author = request.user
-            post.save()
+            review.author = request.user
+            review.save()
             messages.add_message(request, messages.SUCCESS, 'New review created!')
             return redirect("reviews.html")
         else:
@@ -46,9 +48,9 @@ class ReviewListView(LoginRequiredMixin, generic.ListView):
 class BookingListView(LoginRequiredMixin, generic.ListView):
     model = Book
     template_name = "yourbookings.html"
-    paginate_by = 6
+    paginate_by = 2
     def get_queryset(self):
-        return Post.objects.filter(author=self.request.user)
+        return Book.objects.filter(user=self.request.user)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -85,7 +87,7 @@ class CheckAvailabilityMixin:
 
         return True
 
-
+"""
 class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
     template_name = "book.html"
     def book(self, request, *args, **kwargs):
@@ -100,7 +102,39 @@ class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
         
         # Save the booking
         booking = form.save(commit=False)
-        booking.user = self.request.user
-        booking.save()
+        Book.user = self.request.user
+        Book.save()
         messages.success(self.request, 'Booking successful!')
         return super().form_valid(form)
+ """
+class BookingView(View):
+    """ add booking"""
+    def get(self, request):
+        """What happens for a GET request"""
+        return render(
+            request, "book.html", {"BookForm": BookForm()})
+
+    def post(self, request):
+        """What happens for a POST request"""
+        BookForm = BookForm(request.POST, request.FILES)
+
+        if BookForm.is_valid():
+            Book = BookForm.save(commit=False)
+            Book.user = request.user
+            bookingid = slugify('-'.join([Book.horse_name,
+                                            str(Book.user)]),
+                                  allow_unicode=False)
+            Book.save()
+            return redirect('yourbookings')
+        else:
+            messages.error(self.request, 'Please complete all required fields')
+            BookForm = BookForm()
+
+        return render(
+            request,
+            "book.html",
+            {
+                "BookForm": BookForm
+
+            },
+        )
