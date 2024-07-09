@@ -8,8 +8,12 @@ class BookAdmin(SummernoteModelAdmin):
     list_display = ('horse_name', 'status', 'booked_on')
     search_fields = ['horse_name', 'bookingid']
     list_filter = ('status', 'booked_on', 'user', 'bookingid')
-    prepopulated_fields = {'bookingid': ('horse_name', 'booked_on')}
     summernote_fields = ('feeding_requirements', 'exercise_requirements')
+
+    def save_model(self, request, obj, form, change):
+        if not obj.bookingid:
+            obj.bookingid = slugify(f"{obj.horse_name}-{obj.booked_on.strftime('%Y%m%d%H%M%S')}")
+        super().save_model(request, obj, form, change)
 
 # Custom admin class for the Review model
 @admin.register(Review)

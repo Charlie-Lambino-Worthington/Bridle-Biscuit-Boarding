@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from bookingstablestays.views import IndexView, FacilitiesView, BookingView, ReviewListView, BookingListView
+from bookingstablestays.views import IndexView, FacilitiesView, BookingView, ReviewListView, BookingListView, AddReviewView, review_delete, review_edit
 
 
 urlpatterns = [
@@ -26,5 +26,9 @@ urlpatterns = [
     path('book/', BookingView.as_view(), name='book'),
     path('bookings/', BookingListView.as_view(), name='yourbookings'),
     path('reviews/', ReviewListView.as_view(), name='reviews'),
+    path('add_review/', AddReviewView.as_view(), name='add_review'),
+    path('edit_review/<int:review_id>/', review_edit, name='review_edit'),
+    path('delete_review/<int:review_id>/', review_delete, name='review_delete'),   
     path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')), 
 ]

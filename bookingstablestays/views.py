@@ -26,52 +26,83 @@ class ReviewListView(generic.ListView):
     model = Review
     template_name = "reviews.html"
     paginate_by = 6
+    context_object_name = 'reviewlist'
 
     def get_queryset(self):
         return Review.objects.all()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['review_form'] = ReviewForm()
+        if self.request.user.is_authenticated:
+            context['review_form'] = ReviewForm()
         return context
 
-    @login_required
-    def add_review(self, request):
-        """Add review"""
-        if request.method == 'GET':
-            """What happens for a GET request"""
-            return render(request, "reviews.html", {"review_form": ReviewForm()})
+   
+class AddReviewView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        review_form = ReviewForm(request.POST, request.FILES)
 
-        if request.method == 'POST':
-            """What happens for a POST request"""
-            review_form = ReviewForm(request.POST, request.FILES)
-
-            if review_form.is_valid():
-                review = review_form.save(commit=False)
-                review.user = request.user
-                review.save()
-                return redirect('reviews')
-            else:
-                messages.error(request, 'Please complete all required fields')
-                review_form = ReviewForm()
-
-            return render(
-                request,
-                "reviews.html",
-                {"review_form": review_form}
-            )
-    
-    """review(self, request, *args, **kwargs):
-        form = ReviewForm(request.Review)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.author = request.user
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.user = request.user
             review.save()
-            messages.add_message(request, messages.SUCCESS, 'New review created!')
-            return redirect("reviews.html")
+            messages.success(request, 'Review added successfully.')
+            return redirect('reviews')
         else:
-            messages.add_message(request, messages.ERROR, 'Error creating review.')
-            return self.get(request, *args, **kwargs) """
+            messages.error(request, 'Please complete all required fields')
+            return redirect('reviews')
+
+@login_required   
+def review_edit(request, review_id):
+    """
+    Display an individual comment for edit.
+
+    **Context**
+
+    ``Booking``
+        An instance of :model:`bookingstablestays.Book`.
+    ``Review``
+        A single Review related to the Booking.
+    ``review_form``
+        An instance of :review_form:`bookingstablestays.ReviewForm`
+    """
+    if request.method == "POST":
+        review = get_object_or_404(Review, pk=review_id)
+        review_form = ReviewForm(data=request.POST, instance=review)
+
+        if review_form.is_valid() and review.user == request.user:
+            review = review_form.save(commit=False)
+            review.save()
+            messages.add_message(request, messages.SUCCESS, 'Review Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating review!')
+
+    return redirect('reviews')
+
+@login_required
+def review_delete(request, review_id):
+    """
+    Delete an individual review.
+
+    **Context**
+
+    ``booking``
+        An instance of :model:`bookingstablestays.Book`.
+    ``review``
+        A single review related to the booking.
+    """
+    review = get_object_or_404(Review, pk=review_id)
+
+    if review.user == request.user:
+        review.delete()
+        messages.add_message(request, messages.SUCCESS, 'Review deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own Reviews!')
+
+    return redirect('reviews')
+
+
+
 
 class BookingListView(LoginRequiredMixin, generic.ListView):
     model = Book
@@ -79,11 +110,6 @@ class BookingListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 2
     def get_queryset(self):
         return Book.objects.filter(user=self.request.user)
-    
-    """def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = BookForm()
-        return context"""
 
 
 class CheckAvailabilityMixin:
@@ -109,26 +135,8 @@ class CheckAvailabilityMixin:
 
         return available_stables if available_stables.exists() else False
 
-"""
-class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, FormView):
-    template_name = "book.html"
-    def book(self, request, *args, **kwargs):
-        form = BookForm
 
-        def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-            self.check_stable_availability(form.cleaned_data['stable'], form.cleaned_data['stay_start'], form.cleaned_data['stay_end'])
-        if not self.check_stable_availability(form.cleaned_data['stable'], form.cleaned_data['stay_start'], form.cleaned_data['stay_end']):
-            return self.form_invalid(form)
-        
-        # Save the booking
-        booking = form.save(commit=False)
-        Book.user = self.request.user
-        Book.save()
-        messages.success(self.request, 'Booking successful!')
-        return super().form_valid(form)
- """
+
 class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, View):
      """What happens for a GET request"""
      def get(self, request):

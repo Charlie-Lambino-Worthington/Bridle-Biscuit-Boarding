@@ -5,19 +5,10 @@
 
 <!-- index.html content starts here -->
 <div class="container-fluid">
-    <div class="row">
-        <div class="spacing"></div>
-        <form action="" method="post">
-    
-            {% csrf_token %}
-    
-            {{ review_form | crispy }}
-    
-            <button type="submit">Submit</button>
-    
-        </form>
-        <!-- Blog Entries Column -->
+
+        <!-- review Entries Column -->
         <div class="col-12 mt-3 left">
+            <div class="spacing"></div>
             <div class="row">
                 {% for review in reviewlist %}
                 <div class="col-md-4">
@@ -33,14 +24,18 @@
                                     <p class="author">Author: {{ review.user }}</p>
                                 </div>
                             </div>
-                            <a href="{% url 'post_detail' post.slug %}" class="post-link">
                                 <h2 class="card-title">{{review.title }}</h2>
                                 <p class="card-text">{{ review.comment }}</p>
-                            </a>
+                            
 
                             <hr>
                             <p class="card-text text-muted h6">{{ review.created_on}}
                             </p>
+                            {% if user.is_authenticated and review.user == user %}
+                            <button class="btn btn-edit" review_id="{{ review.id }}">Edit</button>
+                            <button class="btn btn-delete" data-review_id="{{ review.id }}">Delete</button>
+                            {% endif %}
+                            
                         </div>
                     </div>
                 </div>
@@ -54,15 +49,8 @@
         </div>
     </div>
     {% if is_paginated %}
-    <form action="" method="post">
-    
-        {% csrf_token %}
-
-        {{ ReviewForm | crispy }}
-
-        <button type="submit">Submit</button>
-
-    </form>
+    <div class="row">
+        
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
@@ -75,8 +63,22 @@
             {% endif %}
         </ul>
     </nav>
-    {% endif %}
-</div>
 
-<!-- index.html content ends here -->
+    {% endif %}
+    <div class="spacing"></div>
+        {% if user.is_authenticated %}
+        <form action="{% url 'add_review' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ review_form | crispy }}
+            <button type="submit">Submit</button>
+        </form>
+        {% else %}
+        <p>You must be logged in to leave a review.</p>
+        {% endif %}
+        <div class="spacing"></div>
+</div>
+{% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}

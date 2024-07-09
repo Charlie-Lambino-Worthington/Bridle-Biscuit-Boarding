@@ -11,6 +11,10 @@ body {
     height: 100vh;
     color: #444444;
   }
+p {
+    margin-left: 5%;
+    margin-right: 5%;
+}
   .spacing {
     padding: 45px;
   }
@@ -58,10 +62,10 @@ margin-left: 5px;
      color: #bbb3db;
  }
 .active {
-    color: antiquewhite !important
+    color: #c26dda!important
 }
 .navbar a:hover {
-    color: antiquewhite;
+    color: #c26dda;
 }
 
 form {
