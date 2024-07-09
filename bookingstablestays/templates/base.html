@@ -10,9 +10,10 @@
 <html class="h-100" lang="en">
 
 <head>
-    <title>CodeStar Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <title>Bridles & Biscuits Boarding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <link rel="shortcut icon" type="image/png" href="{% static './assets/images/logo.png' %}">
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -56,6 +57,19 @@
             <li class="nav-item">
               <a class="nav-link hvr-sweep-to-bottom" href="{% url 'yourbookings' %}">Your Bookings</a>
             </li>
+            {% if user.is_authenticated %}
+<li class="nav-item">
+	<a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+</li>
+{% else %}
+<li class="nav-item">
+	<a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+		href="{% url 'account_signup' %}">Register</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+</li>
+{% endif %}
           </ul>
         </div>
       </nav> 

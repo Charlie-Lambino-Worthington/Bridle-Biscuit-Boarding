@@ -8,10 +8,12 @@
 
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
+            <div class="spacing"></div>
+            <h1>Your Bookings</h1>
             <div class="row">
                 {% for booking in object_list %}
                 <div class="col-md-4">
-                    <div class="spacing"></div>
+                    
                     <div class="card mb-4">
                         <div class="card-body">
                                     <p class="author">Booking: {{ booking.bookingid }}</p>
@@ -30,7 +32,10 @@
                             <hr>
                             <p class="card-text text-muted h6">{{ booking.booked_on}}
                             </p>
+                            <button>Cancel Booking</button>
+                            
                         </div>
+                        <div class="spacing"></div>
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:3 %}
