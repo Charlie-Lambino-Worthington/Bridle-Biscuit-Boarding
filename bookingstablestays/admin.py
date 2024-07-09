@@ -7,7 +7,7 @@ from django_summernote.admin import SummernoteModelAdmin
 class BookAdmin(SummernoteModelAdmin):
     list_display = ('horse_name', 'status', 'booked_on')
     search_fields = ['horse_name', 'bookingid']
-    list_filter = ('status', 'booked_on')
+    list_filter = ('status', 'booked_on', 'user', 'bookingid')
     prepopulated_fields = {'bookingid': ('horse_name', 'booked_on')}
     summernote_fields = ('feeding_requirements', 'exercise_requirements')
 
