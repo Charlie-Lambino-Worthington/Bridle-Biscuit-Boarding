@@ -162,3 +162,9 @@ button {
 .loginbox li {
     list-style-type: none;
 }
+/*your bookings*/
+
+div .bookingcard #bookingcard {
+    width: 75% !important;
+    background-color: #444444;
+}

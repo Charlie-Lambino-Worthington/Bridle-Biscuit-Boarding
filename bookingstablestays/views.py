@@ -79,7 +79,10 @@ class BookingListView(LoginRequiredMixin, generic.ListView):
     template_name = "yourbookings.html"
     paginate_by = 2
     def get_queryset(self):
-        return Book.objects.filter(user=self.request.user)
+        bookings = Book.objects.filter(user=self.request.user)
+        for booking in bookings:
+            booking.cost = booking.stable_id.cost_per_night * booking.number_nights
+        return bookings
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

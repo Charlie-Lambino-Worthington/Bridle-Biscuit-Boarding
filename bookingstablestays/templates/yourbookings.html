@@ -10,37 +10,36 @@
         <div class="col-12 mt-3 left">
             <div class="spacing"></div>
             <h1>Your Bookings</h1>
-            <div class="spacing"></div>
+            <br>
+            <br>
+
             <div class="row">
                 {% for booking in object_list %}
             
-                <div class="col-md-4">
+                <div class="col-12">
                     
-                    <div class="card mb-4">
-                        <div class="card-body">
-                                    <h2 class="author">Booking: {{ booking.bookingid }}</h2>
-                                </div>
-                            </div>
+                    
+                    <div class="bookingcard" id="bookingcard">
+                        <h2 class="author">Booking: {{ booking.bookingid }}</h2>
+                        <h3 class="card-title">{{booking.horse_name | safe  }}</h2>
+                        <h5>Feeding Requirements:</h5>
+                        <p class="card-text">{{ booking.feeding_requirements | safe }}</p>
+                        <h5>Exercise Requirements:</h5>
+                        <p class="card-text">{{ booking.exercise_requirements | safe }}</p>
+                        <p class="card-text"><strong>Booking start date:</strong> {{ booking.stay_start }}</p>
+                        <p class="card-text"><strong>Booking end date:</strong> {{ booking.stay_end }}</p>
+                        <p class="card-text"><strong>Number of nights:</strong> {{ booking.number_nights }}</p>
+                        <h6 class="card-text">Stay cost: £{{ booking.cost }}</h6>
                             
-                                <h3 class="card-title">{{booking.horse_name | safe  }}</h2>
-                                <h5>Feeding Requirements</h5>
-                                <p class="card-text">{{ booking.feeding_requirements | safe }}</p>
-                                <h5>Exercise Requirements</h5>
-                                <p class="card-text">{{ booking.exercise_requirements | safe }}</p>
-                                <p class="card-text">Booking start date: {{ booking.stay_start }}</p>
-                                <p class="card-text">Booking end date: {{ booking.stay_end }}</p>
-                                <p class="card-text">Number of nights: {{ booking.number_nights }}</p>
-                                <p class="card-text">Stay cost: £</p>
-                            </a>
 
                             <hr>
                             <p class="card-text text-muted h6">{{ booking.booked_on}}
                             </p>
                             <button class="btn btn-danger btn-to-cancel" data-booking_id="{{ booking.id }}">Cancel Booking</button>
                             
-                        </div>
-                        <div class="spacing"></div>
                     </div>
+                    <div class="spacing"></div>
+                
                 </div>
             {% if forloop.counter|divisibleby:3 %}
             </div>
