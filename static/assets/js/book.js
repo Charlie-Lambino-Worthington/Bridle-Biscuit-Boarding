@@ -1,7 +1,5 @@
 
-/**const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-const deleteButtons = document.getElementsByClassName("btn-delete");
-const deleteConfirm = document.getElementById("deleteConfirm");
+/**
 
 * Initializes deletion functionality for the provided delete buttons.
 * 
@@ -11,14 +9,7 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 * deletion endpoint for the specific booking.
 * - Displays a confirmation modal (`deleteModal`) to prompt 
 * the user for confirmation before deletion.
-
-for (let button of deleteButtons) {
-    button.addEventListener("click", (e) => {
-      let bookingId = e.target.getAttribute("data-booking_id");
-      deleteConfirm.href = `/bookings/delete_booking/${bookingId}/${bookingId}`;
-      deleteModal.show();
-    });
-}*/
+*/
 
 document.addEventListener("DOMContentLoaded", function() {
   const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));

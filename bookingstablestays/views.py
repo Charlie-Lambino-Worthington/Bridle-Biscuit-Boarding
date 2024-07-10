@@ -56,6 +56,7 @@ class AddReviewView(LoginRequiredMixin, View):
 
 @login_required   
 def review_edit(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
     """
     Display an individual comment for edit.
 
@@ -69,17 +70,18 @@ def review_edit(request, review_id):
         An instance of :review_form:`bookingstablestays.ReviewForm`
     """
     if request.method == "POST":
-        review = get_object_or_404(Review, pk=review_id)
-        review_form = ReviewForm(data=request.POST, instance=review)
-
+        review_form = ReviewForm(request.POST, instance=review)
+        
         if review_form.is_valid() and review.user == request.user:
-            review = review_form.save(commit=False)
-            review.save()
-            messages.add_message(request, messages.SUCCESS, 'Review Updated!')
+            review_form.save()
+            messages.success(request, 'Review updated successfully.')
+            return redirect('reviews')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating review!')
-
-    return redirect('reviews')
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        review_form = ReviewForm(instance=review)
+    
+    return render(request, 'reviews.html', {'review_form': review_form, 'review': review})
 
 @login_required
 def review_delete(request, review_id):
