@@ -35,7 +35,7 @@
                             <hr>
                             <p class="card-text text-muted h6">{{ booking.booked_on}}
                             </p>
-                            <button class="btn btn-danger btn-to-cancel" data-booking_id="{{ booking.id }}">Cancel Booking</button>
+                            <button class="btn btn-danger btn-delete" data-booking_id="{{ booking.id }}">Cancel Booking</button>
                             
                     </div>
                     <div class="spacing"></div>
@@ -81,8 +81,8 @@
                 Are you sure you want to cancel this booking?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" data-dismiss="modal">Close</button>
-                <a id="deleteConfirm" class="btn btn-to-cancel">Delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a id="deleteConfirm" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
