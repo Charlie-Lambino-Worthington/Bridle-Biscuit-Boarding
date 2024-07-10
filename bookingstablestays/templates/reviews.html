@@ -66,8 +66,9 @@
 
     {% endif %}
     <div class="spacing"></div>
-    <div class="container card">
+    <div class="container">
         {% if user.is_authenticated %}
+        <h3>Leave a Review!</h3>
             <form id="reviewForm" action="{% url 'add_review' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ review_form | crispy }}

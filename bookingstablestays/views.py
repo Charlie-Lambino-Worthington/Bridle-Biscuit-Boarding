@@ -12,6 +12,8 @@ from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
+from allauth.account.views import SignupView
+
 import random
 import uuid  # Import uuid module for generating UUIDs
 
