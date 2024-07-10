@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import MinValueValidator, MaxValueValidator
 from .models import Review
 from .models import Book
 
@@ -17,6 +18,11 @@ class ReviewForm(forms.ModelForm):
             "comment": "Review",
             "bookingid": "Booking ID",
         }
+    def clean_rating(self):
+        rating = self.cleaned_data.get('rating')
+        if rating < 0 or rating > 5:
+            raise forms.ValidationError("Rating must be between 1 and 5.")
+        return rating
 
 
 class BookForm(forms.ModelForm):

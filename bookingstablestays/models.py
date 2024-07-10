@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.utils import timezone
@@ -50,7 +51,10 @@ class Review(models.Model):
     """
     title = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0, validators=[
+        MinValueValidator(0),
+        MaxValueValidator(5)
+    ] )
     comment = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
