@@ -5,6 +5,7 @@
 
   <section class="container-fluid">
     <div class="spacing"></div>
+    <div class="card flex-center" id="form">
       <h1>Bridles & Biscuits Booking Form</h1>
 
         <form action="" method="post">
@@ -16,12 +17,16 @@
             <button type="submit">Submit</button>
     
         </form>
+    </div>
         {% if messages %}
         <ul class="messages">
           {% for message in messages %}
             <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
+            <div class="spacing"></div>
+            {% endfor %}
+         
         </ul>
       {% endif %}
+      <div class="spacing"></div>
   </section>
 {% endblock %}

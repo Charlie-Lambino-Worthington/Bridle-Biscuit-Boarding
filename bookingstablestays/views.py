@@ -186,3 +186,15 @@ class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, View):
 
             },
         )
+
+@login_required
+def booking_delete(request, booking_id):
+    booking = get_object_or_404(Book, pk=booking_id)
+
+    if booking.user == request.user:
+        booking.delete()
+        messages.add_message(request, messages.SUCCESS, 'Booking deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own bookings!')
+
+    return redirect('yourbookings')

@@ -68,10 +68,6 @@ margin-left: 5px;
     color: #c26dda;
 }
 
-form {
-    justify-content: flex-end ;
-     display: flex;
-}
 footer {
     background-color: #444444;
     position: fixed;
@@ -103,3 +99,16 @@ footer i:hover {
     margin-top: 10px;
 }
 
+.flex-center form{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.card {
+    background-color: antiquewhite;
+}
+.card #form{
+    max-width: 75vw;
+    margin-left: 25vw;
+    padding: 5%;
+}

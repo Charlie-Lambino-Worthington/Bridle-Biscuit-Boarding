@@ -20,6 +20,4 @@ class BookForm(forms.ModelForm):
             'stay_start': DateInput(),
             'stay_end': DateInput(),
         }
-    
- 
- 
+   
