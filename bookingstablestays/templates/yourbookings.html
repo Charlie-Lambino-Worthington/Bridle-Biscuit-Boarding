@@ -18,23 +18,25 @@
                     
                     <div class="card mb-4">
                         <div class="card-body">
-                                    <p class="author">Booking: {{ booking.bookingid }}</p>
+                                    <h2 class="author">Booking: {{ booking.bookingid }}</h2>
                                 </div>
                             </div>
                             
-                                <h2 class="card-title">{{booking.horse_name }}</h2>
-                                <p class="card-text">{{ booking.feeding_requirements }}</p>
-                                <p class="card-text">{{ booking.exercise_requirements }}</p>
-                                <p class="card-text">{{ booking.stay_start }}</p>
-                                <p class="card-text">{{ booking.stay_end }}</p>
-                                <p class="card-text">{{ booking.number_nights }}</p>
-                                <p class="card-text">£ {{ booking.cost }}</p>
+                                <h3 class="card-title">{{booking.horse_name | safe  }}</h2>
+                                <h5>Feeding Requirements</h5>
+                                <p class="card-text">{{ booking.feeding_requirements | safe }}</p>
+                                <h5>Exercise Requirements</h5>
+                                <p class="card-text">{{ booking.exercise_requirements | safe }}</p>
+                                <p class="card-text">Booking start date: {{ booking.stay_start }}</p>
+                                <p class="card-text">Booking end date: {{ booking.stay_end }}</p>
+                                <p class="card-text">Number of nights: {{ booking.number_nights }}</p>
+                                <p class="card-text">Stay cost: £</p>
                             </a>
 
                             <hr>
                             <p class="card-text text-muted h6">{{ booking.booked_on}}
                             </p>
-                            <button class="btn btn-danger btn-delete" data-booking_id="{{ booking.id }}">Cancel Booking</button>
+                            <button class="btn btn-danger btn-to-cancel" data-booking_id="{{ booking.id }}">Cancel Booking</button>
                             
                         </div>
                         <div class="spacing"></div>
@@ -80,8 +82,8 @@
                 Are you sure you want to cancel this booking?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a id="deleteConfirm" class="btn btn-danger">Delete</a>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+                <a id="deleteConfirm" class="btn btn-to-cancel">Delete</a>
             </div>
         </div>
     </div>

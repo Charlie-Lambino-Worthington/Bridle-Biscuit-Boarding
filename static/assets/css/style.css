@@ -130,6 +130,13 @@ button {
     background-color: #444444;
     color: #bbb3db;
     padding: 10px;
+    align-self: center;
+}
+.btn-to-cancel{
+    width: fit-content;
+    background-color: #d55672 !important;
+    color: #444444 !important;
+    padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
     align-self: center;
