@@ -108,7 +108,7 @@ footer i:hover {
 #form {
     padding: 30px;
     color: #444444;
-    background-color: rgba(187, 187, 255, 0.4);
+    background-color: rgba(187, 187, 255, 0.6);
     max-width: 50%;
 }
 .text-input {
@@ -124,6 +124,15 @@ footer i:hover {
 #book {
     background: url("../images/pexels-lebele-10254513.jpg") no-repeat center center/cover;
     background-size: cover;
+}
+button {
+    width: fit-content;
+    background-color: #444444;
+    color: #bbb3db;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    align-self: center;
 }
 
 /*login screen*/
