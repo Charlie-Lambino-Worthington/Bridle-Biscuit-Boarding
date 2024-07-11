@@ -81,12 +81,8 @@ def review_edit(request, review_id):
     else:
         review_form = ReviewForm(instance=review)
     
-    context = {
-        'review_form': review_form,
-        'review': review,
-    }
-    
-    return render(request, 'reviews.html', context)
+    return render(request, 'reviews.html', {'review_form': review_form, 'review': review})
+
 
 @login_required
 def review_delete(request, review_id):

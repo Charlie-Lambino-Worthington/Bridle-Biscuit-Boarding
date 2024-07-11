@@ -3,7 +3,6 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-
 <div class="container-fluid">
     <div class="col-12 mt-3 left">
         <div class="spacing"></div>
@@ -27,7 +26,7 @@
                         <hr>
                         <p class="card-text text-muted h6">{{ review.created_on }}</p>
                         {% if user.is_authenticated and review.user == user %}
-                        <button class="btn btn-edit"  data-bs-toggle="modal" data-bs-target="#editReviewModal" >Edit</button>
+                        <button class="btn btn-edit" review_id="{{ review.id }}">Edit</button>
                         <button class="btn btn-delete" data-review_id="{{ review.id }}">Delete</button>
                         {% endif %}
                     </div>
@@ -89,12 +88,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="{% url 'review_edit' review.id %}" class="btn btn-danger">Save Changes</a>
+                <button type="button" id="modalSubmitButton" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-
 
 {% endblock content %}
 
