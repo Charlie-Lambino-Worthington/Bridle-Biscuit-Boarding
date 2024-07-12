@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from .models import Book, Review, Stables
-from .forms import BookForm, ReviewForm
+from .forms import BookForm, ReviewForm, EditForm
 from django.db.models import Q
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -54,10 +54,10 @@ class AddReviewView(LoginRequiredMixin, View):
             messages.error(request, 'Please complete all required fields')
             return redirect('reviews')
 
-@login_required   
+"""@login_required   
 def review_edit(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
-    """
+    
     Display an individual comment for edit.
 
     **Context**
@@ -68,44 +68,35 @@ def review_edit(request, review_id):
         A single Review related to the Booking.
     ``review_form``
         An instance of :review_form:`bookingstablestays.ReviewForm`
-    """
+  
     if request.method == "POST":
-        review_form = ReviewForm(request.POST, instance=review)
+        edit_form = EditForm(request.POST, instance=review)
         
-        if review_form.is_valid() and review.user == request.user:
-            review_form.save()
+        if edit_form.is_valid() and review.user == request.user:
+            edit_form.save()
             messages.success(request, 'Review updated successfully.')
             return redirect('reviews')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
-        review_form = ReviewForm(instance=review)
+        edit_form = EditForm(instance=review)
     
-    return render(request, 'reviews.html', {'review_form': review_form, 'review': review})
-
+    return render(request, 'reviews.html', {'edit_form': edit_form, 'review': review})"""
 
 @login_required
-def review_delete(request, review_id):
-    """
-    Delete an individual review.
-
-    **Context**
-
-    ``booking``
-        An instance of :model:`bookingstablestays.Book`.
-    ``review``
-        A single review related to the booking.
-    """
+def review_edit(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
 
-    if review.user == request.user:
-        review.delete()
-        messages.add_message(request, messages.SUCCESS, 'Review deleted!')
+    if request.method == 'POST':
+        form = EditForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Review updated successfully.')
+            return redirect('reviews')  # Redirect to reviews page after editing
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own Reviews!')
+        form = EditForm(instance=review)
 
-    return redirect('reviews')
-
+    return render(request, 'edit.html', {'edit_form': form})
 
 class BookingListView(LoginRequiredMixin, generic.ListView):
     model = Book

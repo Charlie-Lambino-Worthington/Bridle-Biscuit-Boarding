@@ -24,6 +24,21 @@ class ReviewForm(forms.ModelForm):
             raise forms.ValidationError("Rating must be between 1 and 5.")
         return rating
 
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ('title', 'rating',  'comment', )
+        labels = {
+            "title": "Review heading",
+            "rating": "Rating out of five",
+            "comment": "Review",
+        }
+    def clean_rating(self):
+        rating = self.cleaned_data.get('rating')
+        if rating < 0 or rating > 5:
+            raise forms.ValidationError("Rating must be between 1 and 5.")
+        return rating
+
 
 class BookForm(forms.ModelForm):
     class Meta:

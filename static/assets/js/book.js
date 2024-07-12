@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const deleteButtons = document.getElementsByClassName("btn-delete");
   const deleteConfirm = document.getElementById("deleteConfirm");
 
+
   for (let button of deleteButtons) {
       button.addEventListener("click", (e) => {
           let bookingId = e.target.getAttribute("data-booking_id");
@@ -24,3 +25,4 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   }
 });
+
