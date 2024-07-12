@@ -54,12 +54,12 @@ margin-left: 5px;
     font-weight: 200;
 }
 .navbar-toggler {
-    background-color: #444444; 
+    background-color: #bbb3db; 
     color: #bbb3db;
     border: none;
  }
  #navbar-toggler-icon {
-     color: #bbb3db;
+     color: #bbb3db !important;
  }
 .active {
     color: #c26dda!important
