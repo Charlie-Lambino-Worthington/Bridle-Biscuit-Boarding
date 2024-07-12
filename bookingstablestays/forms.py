@@ -3,9 +3,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from .models import Review
 from .models import Book
 
+
 # setup datepicker for bookings
 class DateInput(forms.DateInput):
     input_type = 'date'
+
 
 class ReviewForm(forms.ModelForm):
     class Meta:
@@ -18,11 +20,13 @@ class ReviewForm(forms.ModelForm):
             "comment": "Review",
             "bookingid": "Booking ID",
         }
+
     def clean_rating(self):
         rating = self.cleaned_data.get('rating')
         if rating < 0 or rating > 5:
             raise forms.ValidationError("Rating must be between 1 and 5.")
         return rating
+
 
 class EditForm(forms.ModelForm):
     class Meta:
@@ -33,6 +37,7 @@ class EditForm(forms.ModelForm):
             "rating": "Rating out of five",
             "comment": "Review",
         }
+
     def clean_rating(self):
         rating = self.cleaned_data.get('rating')
         if rating < 0 or rating > 5:
@@ -43,7 +48,7 @@ class EditForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('horse_name', 'feeding_requirements', 'exercise_requirements', 'stay_start', 'stay_end', 'number_nights', 'email')
+        fields = ('horse_name', 'feeding_requirements', 'exercise_requirements', 'stay_start', 'stay_end', 'number_nights', 'email')  # noqa
         # set date fields to use datepicker
         widgets = {
             'stay_start': DateInput(),
@@ -58,4 +63,3 @@ class BookForm(forms.ModelForm):
             "number_nights": "Number of nights",
             "email": "Email address",
         }
-   

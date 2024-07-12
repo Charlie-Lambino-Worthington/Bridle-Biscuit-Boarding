@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
   for (let editbutton of editButtons) {
       editbutton.addEventListener("click", (e) => {
           let reviewId = e.target.getAttribute("data-review_id");
-          let reviewContent = document.getElementById(`review${reviewId}`).innerText.trim();
+          let reviewContent = document.getElementByClass(`review${reviewId}`).innerText.trim();
           reviewText.value = reviewContent; // Populate the textarea with existing review content
           modalReviewForm.setAttribute("action", `/review_edit/${reviewId}/`); // Set the form action dynamically
           modalSubmitButton.innerText = "Update"; // Change submit button text

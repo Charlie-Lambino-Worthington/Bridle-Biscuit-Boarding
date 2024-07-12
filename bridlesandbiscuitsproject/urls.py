@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from bookingstablestays.views import IndexView, FacilitiesView, BookingView, ReviewListView, BookingListView, AddReviewView
+from bookingstablestays.views import IndexView, FacilitiesView, BookingView, ReviewListView, BookingListView, AddReviewView  # noqa
 
 
 urlpatterns = [
@@ -28,6 +28,6 @@ urlpatterns = [
     path('reviews/', ReviewListView.as_view(), name='reviews'),
     path('add_review/', AddReviewView.as_view(), name='add_review'),
     path('admin/', admin.site.urls),
-    path('summernote/', include('django_summernote.urls')), 
-    path('bookingstablestays/', include('bookingstablestays.urls')),  # Include the app urls here
+    path('summernote/', include('django_summernote.urls')),
+    path('bookingstablestays/', include('bookingstablestays.urls')),  # Include the app urls here  # noqa
 ]

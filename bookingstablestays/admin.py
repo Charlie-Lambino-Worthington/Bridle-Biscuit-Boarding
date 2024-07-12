@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Book, Stables, Stable_availability, Review
 from django_summernote.admin import SummernoteModelAdmin
 
+
 # Custom admin class for the Book model
 @admin.register(Book)
 class BookAdmin(SummernoteModelAdmin):
@@ -12,8 +13,9 @@ class BookAdmin(SummernoteModelAdmin):
 
     def save_model(self, request, obj, form, change):
         if not obj.bookingid:
-            obj.bookingid = slugify(f"{obj.horse_name}-{obj.booked_on.strftime('%Y%m%d%H%M%S')}")
+            obj.bookingid = slugify(f"{obj.horse_name}-{obj.booked_on.strftime('%Y%m%d%H%M%S')}")  # noqa
         super().save_model(request, obj, form, change)
+
 
 # Custom admin class for the Review model
 @admin.register(Review)
@@ -22,12 +24,14 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ['title', 'user__username']
     list_filter = ('rating', 'created_on')
 
+
 # Custom admin class for the Stables model
 @admin.register(Stables)
 class StablesAdmin(admin.ModelAdmin):
     list_display = ('stable_num', 'status', 'cost_per_night')
     search_fields = ['stable_num']
     list_filter = ('status',)
+
 
 # Custom admin class for the StableAvailability model
 @admin.register(Stable_availability)

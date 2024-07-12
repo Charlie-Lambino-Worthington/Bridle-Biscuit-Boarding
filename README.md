@@ -230,21 +230,119 @@ o   Booking IDs not displayed with the reviews
 
 ## Design
 ## Wireframes
+Home Page
+![Index page](static/assets/images/homewire.png)
+Facilities Page
+![Facilities page](static/assets/images/facilitieswire.png)
+Book Now Page
+![Booking page](static/assets/images/bookwire.png)
+Your Bookings Page
+![Your Bookings page](static/assets/images/yourbookingswire.png)
+Reviews Page
+![Reviews page](static/assets/images/reviewswire.png)
+Edit Reviews Page
+![Edit Review page](static/assets/images/editwire.png)
+Log In Page
+![Log in page](static/assets/images/signinwire.png)
+Log Out Page
+![Log out page](static/assets/images/signoutwire.png)
+Register Page
+![Register page](static/assets/images/signupwire.png)
 
-
-
-![Index page](static/assets/images/Page_1.png)
-
-![Facilities page](static/assets/images/Page_3.png)
-
-![Booking page](static/assets/images/Page_1_Copy.png)
-
-![Your Bookings page](static/assets/images/Page_4.png)
-
-![Reviews page](static/assets/images/Page_5.png)
 ## Database Diagram
 Bridle & Biscuit Boarding's database is composed of several distinct tables, each serving a specific purpose. The tables are comprised of Users, Book, Stable_availability, Stables, Review. Together, they allow potential customers to easily complete CRUD functionality (Create, Read, Update, Delete) through an intuitive web-based user interface.
 
 The User table is key to the interconnectivity of the backend of the application. It connects other tables through foreign key relationships,allowing for the functionality and cohesion of the system. Within the database, the book model and Reviews model  are linked to users through  Foreign Key relationships, allowing users access to view and delete bookings as well as create, edit, and delete reviews associated with their account.
 
 ![Database schema](static/assets/images/stablesbooking.png)
+
+
+
+
+# Testing
+## Responsiveness
+## Manual Testing
+
+#### Booking form testing
+
+| Test |Result  |
+|--|--|
+| User can book if all fields filled correctly | Pass |
+| User cannot submit booking form if horse name left blank | Pass |
+| User cannot submit booking form if feeding requirements left blank | Pass |
+| User cannot submit booking form if booking start date is in the past | Pass |
+| User cannot submit booking form if booking end date is before start date | Pass |
+| User cannot submit booking form if number of nights left blank | Pass |
+| User cannot submit booking form if email field left blank | Pass |
+| User cannot submit booking form if email field filled incorrectly | Pass |
+| Messages show if form filled incorrectly | Pass |
+| Booking form only visible to logged in user | Pass |
+
+#### Review form testing
+| Test |Result  |
+|--|--|
+| User can review if all fields filled correctly | Pass |
+| User cannot submit edit review form if review title left blank | Pass |
+| User cannot submit edit review form if review rating left blank | Pass |
+| User cannot submit edit review form if review rating is not between 1-5 | ? |
+| User cannot submit edit review form if review content left blank | Pass |
+| User cannot submit edit review form if booking ID not selected | Pass |
+| Messages show if form filled incorrectly | Pass |
+| Review form only visible on reviews left by logged in user | Pass |
+
+#### Review Edit form testing
+| Test |Result  |
+|--|--|
+| User can edit review if all fields filled correctly | Pass |
+| User cannot submit edit review form if review title left blank | Pass |
+| User cannot submit edit review form if review content left blank | Pass |
+| User cannot submit edit review form if review rating is not between 1-5 | Pass |
+| Messages show if form filled incorrectly | Pass |
+| Edit Review buttons only visible on reviews left by logged in user | Pass |
+
+
+
+
+## Validation
+### HTML
+
+| Page | Validator | Result |
+|--|--|--|
+| Index | ![Database schema](static/assets/images/indexhtmlvalid.png) |Pass  |
+| Facilities | ![Database schema](static/assets/images/fachtmlvalid.png) | Pass |
+| Booking form | ![Database schema](static/assets/images/bookhtmlvalid.png) | Pass |
+| Reviews | ![Database schema](static/assets/images/reviewhtmlvalid.png) | Pass |
+| Bookings | ![Database schema](static/assets/images/bookinghtmlvalid.png)  | Pass |
+| Log out | ![Database schema](static/assets/images/outhtmlvalid.png) | Pass |
+| Log in | ![Database schema](static/assets/images/inhtmlvalid.png) | Pass |
+| Register | ![Database schema](static/assets/images/registerhtmlnotvalid.png) | Fail |
+
+The errors being picked up in the register page validator are in the automatic files imported from allauth. I was unable to find the errors to correct or locate these errors.
+
+### CSS
+
+| Page | Validator | Result |
+|--|--|--|
+| CSS | ![Database schema](static/assets/images/cssvalid.png) |Pass  |
+
+### Python
+
+| File | Validator | Result |
+|--|--|--|
+| Project Urls.py | ![Database schema](static/assets/images/prourlspyvalid.png) |Pass  |
+| Settings.py | ![Database schema](static/assets/images/settingspyvalid.png) | Pass |
+| Views.py | ![Database schema](static/assets/images/viewspyvalid.png) | Pass |
+| urls.py | ![Database schema](static/assets/images/urlspyvalid.png) | Pass |
+| forms.py | ![Database schema](static/assets/images/formspyvalid.png)  | Pass |
+| models.py | ![Database schema](static/assets/images/modelspyvalid.png) | Pass |
+| admin.py | ![Database schema](static/assets/images/adminpyvalid.png) | Pass |
+
+
+### Javascript
+
+| File | Validator | Result |
+|--|--|--|
+| reviews.js | ![Database schema](static/assets/images/bookjsvalid.png) |Pass  |
+| book.js | ![Database schema](static/assets/images/reviewjsvalid.png) | Pass |
+
+The Warnings picked up in the Javascript validator where down to the version of Javascript being used, as arow functions and template literals are only available in ES6. It also wasn't keen on bootstrap as a variable.

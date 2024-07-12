@@ -6,11 +6,13 @@
 <div class="container-fluid">
     <div class="col-12 mt-3 left">
         <div class="spacing"></div>
+        <h1>Reviews</h1>
+        <br>
         <div class="row">
             {% for review in reviewlist %}
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <div class="card-body" id="reviewcontent">
+                    <div class="card-body reviewcontent">
                         <div class="image-container">
                             {% if "placeholder" in review.featured_image.url %}
                             <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
@@ -30,7 +32,7 @@
                         {% endif %}
                     </div>
                 </div>
-                
+
             </div>
             {% if forloop.counter|divisibleby:3 %}
         </div>
@@ -70,30 +72,6 @@
     {% endif %}
 </div>
 <div class="spacing"></div>
-</div>
-
-<!-- Edit Review Modal 
-                <div class="modal fade" id="editReviewModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editReviewModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editReviewModalLabel">Edit Review</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="modalReviewForm" method="POST">
-                                    {% csrf_token %}
-                                    {{ edit_form | crispy }}
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" id="modalSubmitButton" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            -->
 {% endblock content %}
 
 {% block extras %}

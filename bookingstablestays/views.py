@@ -17,12 +17,15 @@ from allauth.account.views import SignupView
 import random
 import uuid  # Import uuid module for generating UUIDs
 
+
 # Create your views here.
 class IndexView(TemplateView):
     template_name = "index.html"
 
+
 class FacilitiesView(TemplateView):
     template_name = "facilities.html"
+
 
 class ReviewListView(generic.ListView):
     model = Review
@@ -32,14 +35,14 @@ class ReviewListView(generic.ListView):
 
     def get_queryset(self):
         return Review.objects.all()
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
             context['review_form'] = ReviewForm()
         return context
 
-   
+
 class AddReviewView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         review_form = ReviewForm(request.POST, request.FILES)
@@ -54,34 +57,6 @@ class AddReviewView(LoginRequiredMixin, View):
             messages.error(request, 'Please complete all required fields')
             return redirect('reviews')
 
-"""@login_required   
-def review_edit(request, review_id):
-    review = get_object_or_404(Review, pk=review_id)
-    
-    Display an individual comment for edit.
-
-    **Context**
-
-    ``Booking``
-        An instance of :model:`bookingstablestays.Book`.
-    ``Review``
-        A single Review related to the Booking.
-    ``review_form``
-        An instance of :review_form:`bookingstablestays.ReviewForm`
-  
-    if request.method == "POST":
-        edit_form = EditForm(request.POST, instance=review)
-        
-        if edit_form.is_valid() and review.user == request.user:
-            edit_form.save()
-            messages.success(request, 'Review updated successfully.')
-            return redirect('reviews')
-        else:
-            messages.error(request, 'Please correct the errors below.')
-    else:
-        edit_form = EditForm(instance=review)
-    
-    return render(request, 'reviews.html', {'edit_form': edit_form, 'review': review})"""
 
 @login_required
 def review_edit(request, review_id):
@@ -92,20 +67,22 @@ def review_edit(request, review_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Review updated successfully.')
-            return redirect('reviews')  # Redirect to reviews page after editing
+            return redirect('reviews')  # Redirect to reviews page after editing  # noqa
     else:
         form = EditForm(instance=review)
 
     return render(request, 'edit.html', {'edit_form': form})
 
+
 class BookingListView(LoginRequiredMixin, generic.ListView):
     model = Book
     template_name = "yourbookings.html"
     paginate_by = 2
+
     def get_queryset(self):
         bookings = Book.objects.filter(user=self.request.user)
         for booking in bookings:
-            booking.cost = booking.stable_id.cost_per_night * booking.number_nights
+            booking.cost = booking.stable_id.cost_per_night * booking.number_nights  # noqa
         return bookings
 
     def get_context_data(self, **kwargs):
@@ -119,11 +96,11 @@ class CheckAvailabilityMixin:
         now = timezone.now().date()
 
         if stay_start < now:
-            messages.error(self.request, "Check-in date is not valid. Please enter a valid date.")
+            messages.error(self.request, "Check-in date is not valid. Please enter a valid date.")  # noqa
             return False
 
         if stay_end <= stay_start:
-            messages.error(self.request, "Check-out date is not valid. Please enter a valid date.")
+            messages.error(self.request, "Check-out date is not valid. Please enter a valid date.")  # noqa
             return False
 
         # Query to find overlapping bookings for the same stable
@@ -133,20 +110,19 @@ class CheckAvailabilityMixin:
         )
 
         # Get all stables and exclude those with overlapping bookings
-        available_stables = Stables.objects.exclude(id__in=overlapping_bookings.values_list('stable_id', flat=True))
+        available_stables = Stables.objects.exclude(id__in=overlapping_bookings.values_list('stable_id', flat=True))  # noqa
 
         return available_stables if available_stables.exists() else False
 
 
-
 class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, View):
-     """What happens for a GET request"""
-     def get(self, request):
-    #add booking
+    """What happens for a GET request"""
+    def get(self, request):
+        # add booking
         return render(
             request, "book.html", {"bookform": BookForm()})
 
-     def post(self, request):
+    def post(self, request):
         """What happens for a POST request"""
         print(request.POST)
         book_form = BookForm(request.POST, request.FILES)
@@ -155,13 +131,13 @@ class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, View):
             stay_start = book_form.cleaned_data['stay_start']
             stay_end = book_form.cleaned_data['stay_end']
 
-             # Query all stables
+            # Query all stables
             all_stables = Stables.objects.all()
-            
-            available_stables = self.check_stable_availability(stay_start, stay_end)
+
+            available_stables = self.check_stable_availability(stay_start, stay_end)  # noqa
 
             if not available_stables:
-                messages.error(request, 'No available stables for the selected dates.')
+                messages.error(request, 'No available stables for the selected dates.')  # noqa
                 return render(request, "book.html", {"bookform": book_form})
 
             selected_stable = random.choice(available_stables)
@@ -171,8 +147,8 @@ class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, View):
             booking.user = request.user
             booking.stable_id = selected_stable
             # Generate random booking ID
-            booking.bookingid = uuid.uuid4().hex[:12].lower()  # Generate a random 12-character hex string
-            
+            booking.bookingid = uuid.uuid4().hex[:12].lower()  # Generate a random 12-character hex string  # noqa
+
             booking.save()
             return redirect('yourbookings')
         else:
@@ -189,6 +165,7 @@ class BookingView(LoginRequiredMixin, CheckAvailabilityMixin, View):
             },
         )
 
+
 @login_required
 def booking_delete(request, booking_id):
     booking = get_object_or_404(Book, pk=booking_id)
@@ -197,6 +174,6 @@ def booking_delete(request, booking_id):
         booking.delete()
         messages.add_message(request, messages.SUCCESS, 'Booking deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own bookings!')
+        messages.add_message(request, messages.ERROR, 'You can only delete your own bookings!')  # noqa
 
     return redirect('yourbookings')

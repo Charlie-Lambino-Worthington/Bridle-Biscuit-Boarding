@@ -45,8 +45,9 @@ nav{
     padding: 0;
     z-index: 5;
 }
-.logo {
+#logo {
 margin-left: 5px;
+max-height: 75px !important;
 }
 .navbar a,
 .copyright {
@@ -129,7 +130,7 @@ footer i:hover {
     background: url("../images/pexels-lebele-10254513.jpg") no-repeat center center/cover;
     height: 100vh;
 }
-button {
+button, .btn-edit {
     width: fit-content;
     background-color: #444444 !important;
     color: #bbb3db !important;
@@ -137,6 +138,7 @@ button {
     padding-left: 25px;
     padding-right: 25px;
     align-self: center;
+    border-color: #444444 !important;
 }
 
 /*login screen*/
