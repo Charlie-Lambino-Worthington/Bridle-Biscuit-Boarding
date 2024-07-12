@@ -26,7 +26,7 @@
                         <hr>
                         <p class="card-text text-muted h6">{{ review.created_on }}</p>
                         {% if user.is_authenticated and review.user == user %}
-                        <a href="{% url 'review_edit' review_id=review.id %}" class="btn btn-edit"><button type="button">Edit</button></a>
+                        <a href="{% url 'review_edit' review_id=review.id %}" class="btn btn-edit">Edit</a>
                         {% endif %}
                     </div>
                 </div>

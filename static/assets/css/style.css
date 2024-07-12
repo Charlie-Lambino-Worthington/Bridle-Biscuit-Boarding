@@ -125,9 +125,13 @@ footer i:hover {
     background: url("../images/pexels-lebele-10254513.jpg") no-repeat center center/cover;
     background-size: cover;
 }
-button, .btn-edit {
+#edit {
+    background: url("../images/pexels-lebele-10254513.jpg") no-repeat center center/cover;
+    height: 100vh;
+}
+button {
     width: fit-content;
-    background-color: #444444;
+    background-color: #444444 !important;
     color: #bbb3db !important;
     padding: 10px;
     padding-left: 25px;

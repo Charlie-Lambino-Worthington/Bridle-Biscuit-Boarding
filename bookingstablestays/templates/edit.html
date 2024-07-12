@@ -3,16 +3,12 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-  <section class="container-fluid" id="book">
-      <br>
-      <br>
+  <section class="container-fluid" id="edit">
+     
     <div class="flex-center" >
-      <h1>Edit Your Review</h1>
-      <br>
-      <br>
-
+      
         <form id="form" action="" method="post">
-    
+          <h1>Edit Your Review</h1>
             {% csrf_token %}
     
             {{ edit_form | crispy }}
