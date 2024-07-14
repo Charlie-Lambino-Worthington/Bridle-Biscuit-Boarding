@@ -234,6 +234,42 @@ The User table is key to the interconnectivity of the backend of the application
 
 ![Database schema](static/assets/images/stablesbooking.png)
 
+## Data Models:
+
+
+| Book   |            |   |
+|----------|:-------------:|------:|
+| Horse name |  CharField |  |
+| Feeding requirements |  CharField   |   FK |
+| Exercise requirements | CharField |     |
+| Stay start date |  DateField |   |
+| Stay end date |  DateField |   |
+| Number of nights |  IntegerField |   |
+| Bokked on |  DateField |   |
+| User |  CharField | FK |
+| Booking ID |  SlugField   |   FK |
+| Email | EmailField |    |
+| Stable ID |  Foreign Key | FK  |
+
+
+
+| Review  |            |   |
+|----------|:-------------:|------:|
+| Category |  CharField | FK |
+
+
+| Stables  |            |   |
+|----------|:-------------:|------:|
+| stable number |  IntegerField | FK  |
+| status |  IntegerField |  |
+| Cost per night |  IntegerField |   |
+
+| Stable availability  |            |   |
+|----------|:-------------:|------:|
+| Stable |  IntegerField | FK  |
+| Start date |  DateField |   |
+| End date |  DateField |   |
+
 ## User Flow Chart
 
 ![User flow chart](static/assets/images/lucid.png)
