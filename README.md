@@ -346,3 +346,75 @@ The errors being picked up in the register page validator are in the automatic f
 | book.js | ![Database schema](static/assets/images/reviewjsvalid.png) | Pass |
 
 The Warnings picked up in the Javascript validator where down to the version of Javascript being used, as arow functions and template literals are only available in ES6. It also wasn't keen on bootstrap as a variable.
+
+
+
+# Deployment
+## GitHub Repository
+This stable booking site was developed using the GitPod editor and uploaded to the GitHub remote repository called 'Bridle-Biscuit-Boarding' 
+
+For this development, the following Git commands were used in order to push the code to this repository:
+<ol>
+<li>git add .  to include all edits made in the editor into the staging area before they are commited.</li>
+<li>git commit -m “commit message”  to save the changes in the staging area to the local repository, preparing them to be pushed to GitHub.</li>
+<li>git push command was utilized to upload all committed code to the remote repository on GitHub.</li>
+</ol>
+
+## Heroku Deployment
+
+The website was successfully deployed using Heroku applications. The deployment process:
+<ol>
+<li>Upon opening the Heroku website click "New" to create a new app.</li>
+<li>Give the app name and set your region, click the Create app button.</li>
+<li>In the Settings click Config Vars and set up the following config variables:
+
+SECRET_KEY: (Your secret key)
+
+DATABASE_URL: (Your database url)
+
+CLOUDINARY_URL: (Your cloudinary storage url)</li>
+<li>Set the deployment type as Github and enter the repository name to connect them.</li>
+<li>Then go to the Manual Deploy section,  select the main branch and click the Deploy Branch button.
+Once the development phase is successful, the application will undergo a deployment process to Heroku, which may take some time.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Credits and acknowledgements
+## Pictures
+
+Three Brown Horses in Pasture by Gantas Vaičiulėnas on Pexels
+
+A Female Equestrian Competing in an Event by TheOther Kev on Pexels
+
+Barn, Horse stable, Nature image by Stefan Schweihofer on Pixabay
+
+Iceland, Horse, Pony image on Pixabay
+
+A Man Making a Horseshoe by Lucian Pirvu on Pexels
+
+Woman holding brown horse's bridle by Vadim Fomenok on Unsplash
+
+Three horses grazing in a field at sunset by EmmaLi Millard on Unsplash
+
+Sandschool on https://www.poleanfarm.co.uk/wp-content/uploads/sites/19/2013/10/Sand-School.jpg
+
+
+
+Raymond Penners for amazing Allauth and Allauth templates
+Roger Pfäffli, Code Institute Alumnus for explaining on Slack how to set up development and DEBUG variables in env.py
+Coding Yaar for Bootstrap navbar toggler colour change tutorial
+May.D from Stack Overflow for date validation
+Tutors Jason and Oisin for pointing me in the good direction and helping with understanding the code parts I've been struggling with
+My mentor Narender Singh for his patience and all the help and support
+willeM_ Van Onsem for helping me with fixing my edit booking class
