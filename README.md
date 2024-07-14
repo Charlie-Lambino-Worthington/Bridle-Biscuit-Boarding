@@ -2,6 +2,8 @@
 
 # Bridles & Biscuits Boarding
 
+![Bridles and biscuits boarding](static/assets/images/responsive.png)
+
 Bridle & Biscuit Boarding is a booking system for a short stay stables designed for people travelling without their equine companions. This  project is a Full Stack website built using Django. This stable booking website is built to allow users to book a stable online and leave reviews of their experience using our services. Users are required to register in order to book or leave a review. 
 
 ### MVP
@@ -25,6 +27,7 @@ After setting up the user stories as issues for my project I broke them down int
 
 To see the Kanban for the Bridles & Biscuits  Boarding project please click here: https://github.com/users/Charlie-Lambino-Worthington/projects/4
 
+![Kanban board](static/assets/images/kanban.png)
 
 ## User stories / Use Cases
 
@@ -224,11 +227,25 @@ o   Only able to leave a review with a valid booking id so users know all review
 
 o   Booking IDs not displayed with the reviews
 
+## Database Diagram
+Bridle & Biscuit Boarding's database is composed of several distinct tables, each serving a specific purpose. The tables are comprised of Users, Book, Stable_availability, Stables, Review. Together, they allow potential customers to easily complete CRUD functionality (Create, Read, Update, Delete) through an intuitive web-based user interface.
 
+The User table is key to the interconnectivity of the backend of the application. It connects other tables through foreign key relationships,allowing for the functionality and cohesion of the system. Within the database, the book model and Reviews model  are linked to users through  Foreign Key relationships, allowing users access to view and delete bookings as well as create, edit, and delete reviews associated with their account.
+
+![Database schema](static/assets/images/stablesbooking.png)
+
+## User Flow Chart
+
+![User flow chart](static/assets/images/lucid.png)
 
 # UX Design
 
-## Design
+## Design Choices
+
+For this colour scheme the hope was to create a bright and cheerful yet reserved and elegant with the majority of the page design having the light purple #bbb3db with the slate grey #444444 for the text, however this is inversed in the logo, buttons, nav bar and footer. Using the same colours to create a uniform feeling while also making these elements stand out. The pink #c26dda was just used to pull in a pop of subtle colour to attract the eye when hovering over certain links.
+
+![Index page](static/assets/images/colors.png)
+
 ## Wireframes
 Home Page
 ![Index page](static/assets/images/homewire.png)
@@ -249,21 +266,161 @@ Log Out Page
 Register Page
 ![Register page](static/assets/images/signupwire.png)
 
-## Database Diagram
-Bridle & Biscuit Boarding's database is composed of several distinct tables, each serving a specific purpose. The tables are comprised of Users, Book, Stable_availability, Stables, Review. Together, they allow potential customers to easily complete CRUD functionality (Create, Read, Update, Delete) through an intuitive web-based user interface.
 
-The User table is key to the interconnectivity of the backend of the application. It connects other tables through foreign key relationships,allowing for the functionality and cohesion of the system. Within the database, the book model and Reviews model  are linked to users through  Foreign Key relationships, allowing users access to view and delete bookings as well as create, edit, and delete reviews associated with their account.
+# Features
 
-![Database schema](static/assets/images/stablesbooking.png)
+## home page
+
+The landing page provides an introduction to the website with a section introducing the stables and a section introducing the owner of the stables. 
+
+ Displaying an image for each section using asthetically pleasing images of the feilds at the stables and of the owner, to give a good first impression of the stables.
+
+![Home page](static/assets/images/homepage.png)
+
+The navigation bar is great for users as it provides efficint access to all the important pages of the website. The navigation bar includes links to Home, Our Facilities, Book Now, Reviews, Your Bookings and Log In.
+
+![Navbar](static/assets/images/navbar.png)
+
+The footer contains useful information for users including the copywrite information and links to Facebook, Twitter, Youtube and Instagram.
+
+![Footer](static/assets/images/footer.png)
+
+## Facilities page
+
+The facilities page is a great source of information for potential customers as it has sections about the stable blocks, the grazing land, the on site vet and farrier, the homemade horse biscuits and the State Of The Art, the  Exercise Facilities including the Sovereign Plus Horse Walker, the Olympic size Sandschool and the Cross-country Routes. Including images of each of these facilities so that customers know what to expect.
+
+![Facilities page](static/assets/images/facilities.png)
+
+## Registration
+
+Registration allows users to view their bookings, make bookings, leave reviews and edit any reviews they had made previously.
+
+![Register](static/assets/images/signup.png)
+
+## Log in
+
+![Log in](static/assets/images/login.png)
+
+## Log out
+
+![Log out](static/assets/images/logout.png)
+
+## Book now
+
+Our booking form allows customers to enter details including 
+ 
+o Input for horse/ donkey name
+
+o   Input for feeding requirements
+
+o   Input for exercise requirements
+
+o   Input for start date
+
+o   Input for end date for their booking 
+
+o   Input for number of nights
+
+o   Input for email address
+
+This enables the user to easily make a booking through the UI.
+
+Some booking validation criteria was applied to the form to check that there are no overlapping booking for the same stable at the same time. If the all the stables are booked at a given date the form alerts the user that booking is not available on the given date.
+
+The form also validates the data input and alerts users if there are issues so that they can correct any issues, in order to be able to submit the form.
+
+![Booking form](static/assets/images/bookingform.png)
+
+## Reviews
+
+The reviews page shows the reviews left by other customers including the image they uploaded, the title they gave the review, the rating they gave and the review content, as well as an edit button for the reviews left by the current user.
+
+![Reviews](static/assets/images/none.png)
 
 
+#### Review form
 
+Our review form allows customers to enter details including: 
+ 
+o Input for review heading
+
+o   Input for rating
+
+o   Input for an image upload
+
+o   Input for their review
+
+o   Input for thier booking id
+
+This enables the user to easily leave a review through the UI. 
+
+The form also validates the data input and alerts users if there are issues so that they can correct any issues, in order to be able to submit the form.
+
+![Review form](static/assets/images/reviewform.png)
+
+## Edit reviews
+
+Our review form allows customers to enter details including: 
+ 
+o   Input for review heading
+
+o   Input for rating
+
+o   Input for their review
+
+This enables the user to easily edit their review through the UI. 
+
+The form also validates the data input and alerts users if there are issues so that they can correct any issues, in order to be able to submit the form.
+
+![Review edit form](static/assets/images/none.png)
+
+
+## Your Bookings
+
+The your bookings page onmly displays the details of the logged in user's bookings including :
+ 
+o Booking ID
+
+o Horse / Donkey's name
+
+o Feeding requirements
+
+o Exercise requirements
+
+o Start date
+
+o Eend date
+
+o Number of nights
+
+o Booking cost
+
+This enables the user to easily check their booking details.
+
+![Your bookings](static/assets/images/none.png)
 
 # Testing
 ## Responsiveness
+
+
 ## Manual Testing
 
-#### Booking form testing
+### Links
+
+| Link | Expected Outcome | Grade |
+| ------- | ---------------- | ----- |
+| Logo | Navigates to the home page when clicked | Pass |
+| Home | Navigates to the home page when clicked | Pass |
+| Facilities | Navigates to facilities page when clicked | Pass |
+| Book now | Navigates to booking page when clicked | Pass |
+| Reviews | Navigates to reviews page when clicked | Pass |
+| Your bookings | Navigates to your bookings page when clicked | Pass |
+| Register | Navigates to a registration form when clicked | Pass |
+| Log in | Navigates to a screen where users can log in when clicked | Pass |
+| Logout | Navigates to a page confirming for the user to log out | Pass |
+
+
+### Booking form testing
 
 | Test |Result  |
 |--|--|
@@ -378,19 +535,47 @@ CLOUDINARY_URL: (Your cloudinary storage url)</li>
 Once the development phase is successful, the application will undergo a deployment process to Heroku, which may take some time.</li>
 </ol>
 
+# Bugs
 
 
 
 
 
+# Tools and Technologies Used:
+The technologies implemented in this application included HTML5, CSS, Bootstrap, Java Script, Python and Django.
 
+* Git used for version control. 
+* GitHub used for secure online code storage.
+* Code Institute IDE on Gitpod used as a cloud-based IDE for development.
+* Bootstrap used for front-end CSS framework using pre-built components.
+* Code institute database used as for database.
+* Heroku hosting the deployed back-end site.
+* Cloudinary used to store static files online.
+* Google and Stack Overflow and Phind utilized for general research or solving a bug, information gathering, and various online tools.
 
-
-
-
+### Languages Used:
+* HTML5
+* CSS
+* Java Script
+* Python
 
 
 # Credits and acknowledgements
+
+Chat GPT used to create content text.
+
+Font Awesome was used for icons.
+
+Wireframes were built using
+
+Database diagram built with https://dbdiagram.io/home
+
+Logo made on https://logo.com/
+
+User flow chart created on https://www.lucidchart.com/
+
+Colour palet created using https://coolors.co/
+
 ## Pictures
 
 Three Brown Horses in Pasture by Gantas Vaičiulėnas on Pexels
@@ -409,12 +594,30 @@ Three horses grazing in a field at sunset by EmmaLi Millard on Unsplash
 
 Sandschool on https://www.poleanfarm.co.uk/wp-content/uploads/sites/19/2013/10/Sand-School.jpg
 
+Monarch sovereign plus walker on https://www.monarch-equestrian.co.uk/products/monarch-sovereign-plus-horse-exerciser/
 
+Canterbury Cookies Peppermint Plops Horse Treats on https://www.oakmanorsaddlery.com/collections/treats/products/canterbury-cookies-peppermint-plops-horse-treats
 
-Raymond Penners for amazing Allauth and Allauth templates
-Roger Pfäffli, Code Institute Alumnus for explaining on Slack how to set up development and DEBUG variables in env.py
-Coding Yaar for Bootstrap navbar toggler colour change tutorial
-May.D from Stack Overflow for date validation
-Tutors Jason and Oisin for pointing me in the good direction and helping with understanding the code parts I've been struggling with
-My mentor Narender Singh for his patience and all the help and support
-willeM_ Van Onsem for helping me with fixing my edit booking class
+Images in the reviews came from my own photographs of my donkeys Albert and Sophie and my horse Oasis.
+
+## code
+
+Allauth and Allauth templates
+
+Bootstrap 
+
+Miguel Araujo: https://django-crispy-forms.readthedocs.io/en/latest/
+
+Tutors Rebecca, Roman and Martin for pointing me in the right direction and helping the parts of the code I was struggling with.
+
+My Facilitator Iris Smok for all her help and support.
+
+TulaUnogi: https://github.com/TulaUnogi/cat-beans-cafe/blob/main/README.md#testing
+
+NielMc: https://github.com/Code-Institute-Solutions/blog
+
+Serhat Teker: https://tech.serhatteker.com/post/2020-06/custom-signup-view-in-django-allauth/
+
+Iris Smok: https://github.com/Iris-Smok/The-Healthy-Family-PP4/blob/main/recipes/views.py
+
+bky201: https://github.com/bky201/HotelBooking

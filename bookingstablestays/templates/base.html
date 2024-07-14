@@ -36,7 +36,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg container-fluid">
         <a class="navbar-brand" href="{% url 'index' %}"> 
-          <img src="/static/assets/images/logo.png" class="logo" id="logo" style="height:75px;" alt="Bridles & Biscuits Boarding">
+          <img src="/static/assets/images/logo.png" class="logo" id="logo" style="height:70px;" alt="Bridles & Biscuits Boarding">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
@@ -59,18 +59,18 @@
               <a class="nav-link hvr-sweep-to-bottom" href="{% url 'yourbookings' %}">Your Bookings</a>
             </li>
             {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                  href="{% url 'account_signup' %}">Register</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
-              </li>
-              {% endif %}
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                href="{% url 'account_signup' %}">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </nav> 

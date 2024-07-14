@@ -3,6 +3,7 @@
     padding:0;
     box-sizing: border-box;
 }
+
 body {
     padding: 0;
     background-color: #bbb3db;
@@ -11,18 +12,22 @@ body {
     height: 100vh;
     color: #444444;
   }
+
 p {
     margin-left: 5%;
     margin-right: 5%;
 }
+
   .spacing {
-    padding: 45px;
+    padding: 25px;
   }
+
   /*color and padding*/
   .contact {
     padding-top: 80px;
     text-align: center;
   }
+
   #index {
     text-align: center;
     padding-top: 80px;
@@ -31,10 +36,13 @@ p {
   h1 {
     color:#444444 ;
   }
+
+
 /*navbar and footer*/
 nav{
     display: flex;   
 }
+
 .navbar {
     background-color: #444444;
     position: fixed;
@@ -45,26 +53,32 @@ nav{
     padding: 0;
     z-index: 5;
 }
+
 #logo {
 margin-left: 5px;
 max-height: 75px !important;
 }
+
 .navbar a,
 .copyright {
     color: #bbb3db;
     font-weight: 200;
 }
+
 .navbar-toggler {
     background-color: #bbb3db; 
     color: #bbb3db;
     border: none;
  }
+
  #navbar-toggler-icon {
      color: #bbb3db !important;
  }
+
 .active {
     color: #c26dda!important
 }
+
 .navbar a:hover {
     color: #c26dda;
 }
@@ -87,18 +101,22 @@ footer ul {
     align-content: space-evenly;
     list-style-type: none;   
 }
+
 footer a {
     color: #bbb3db;
 font-size: large;
 }
+
 footer i:hover {
     color:#c26dda;
 }
+
 .copyright {
     font-size: x-small;
     color: #bbb3db;
     margin-top: 10px;
 }
+
  /*booking form*/
 .flex-center form{
     display:flex;
@@ -112,6 +130,7 @@ footer i:hover {
     background-color: rgba(187, 187, 255, 0.6);
     max-width: 50%;
 }
+
 .text-input {
     background: transparent;
     color: #fafafa;
@@ -122,14 +141,17 @@ footer i:hover {
     border-radius: 2px;
     padding: 0 5px;
 }
+
 #book {
     background: url("../images/pexels-lebele-10254513.jpg") no-repeat center center/cover;
     background-size: cover;
 }
+
 #edit {
     background: url("../images/pexels-lebele-10254513.jpg") no-repeat center center/cover;
     height: 100vh;
 }
+
 button, .btn-edit {
     width: fit-content;
     background-color: #444444 !important;
@@ -158,12 +180,27 @@ button, .btn-edit {
     text-align: center;
     
 }
+
 .loginbox li {
     list-style-type: none;
 }
+
 /*your bookings*/
 
 div .bookingcard #bookingcard {
     width: 75% !important;
     background-color: #444444;
+}
+
+/* Media Query for smaller screens */
+@media only screen and (max-width: 700px) {
+    #signupbox,
+    #loginbox,
+    #logoutbox {
+        width: 100% !important;
+        margin-left: 0px !important;
+        color: #444444;
+        background-color: rgba(187, 187, 255, 0.6);
+        text-align: center;
+    }
 }
