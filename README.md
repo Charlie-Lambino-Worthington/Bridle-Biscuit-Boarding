@@ -6,6 +6,10 @@
 
 Bridle & Biscuit Boarding is a booking system for a short stay stables designed for people travelling without their equine companions. This  project is a Full Stack website built using Django. This stable booking website is built to allow users to book a stable online and leave reviews of their experience using our services. Users are required to register in order to book or leave a review. 
 
+
+### Live Project Link
+Deployed version: https://bridlesandbiscuits-c1f6a0cee3d5.herokuapp.com/ 
+
 ### MVP
 
 The MVP for this project includes user registration, booking creation, and deletion to provide users with a easy to use booking system to book their mounts into Bridles and Biscuits Boarding. It also includes a review form with review creation, editing and deletion, so customers can leave reviews for future customers, to enable people to make an informed decision.
@@ -17,9 +21,6 @@ Problem statement: Owning your own horse or donkey is great but when you want to
 Purpose: Our site allows you to book your horse or donkey into a professionally run stables with highly qualified equine professionals for short stays, so that you can holiday in peace knowing your mount is fully cared for, supervised and safe.
 
 Target audience: Horse or Donkey owners who normally keep their Horses and Donkeys in their own stable yards, when they want to or need to travel and are unable to take their Horses or Donkeys with them.
-
-### Live Project Link
-
 
 # Agile Development
 I planned and tracked progress on this project using Agile methodology. I created a kanban board with GitHub Projects to manage the workload. 
@@ -376,7 +377,7 @@ The form also validates the data input and alerts users if there are issues so t
 
 The reviews page shows the reviews left by other customers including the image they uploaded, the title they gave the review, the rating they gave and the review content, as well as an edit button for the reviews left by the current user.
 
-![Reviews](static/assets/images/none.png)
+![Reviews](static/assets/images/reviews.png)
 
 
 #### Review form
@@ -413,7 +414,7 @@ This enables the user to easily edit their review through the UI.
 
 The form also validates the data input and alerts users if there are issues so that they can correct any issues, in order to be able to submit the form.
 
-![Review edit form](static/assets/images/none.png)
+![Review edit form](static/assets/images/edit.png)
 
 
 ## Your Bookings
@@ -438,9 +439,28 @@ o Booking cost
 
 This enables the user to easily check their booking details.
 
-![Your bookings](static/assets/images/none.png)
+![Your bookings](static/assets/images/yourbookings.png)
+
+## Future features
+
+There are several future features I would like to add to this project including:
+
+* Sending an email automatically when a booking is made confirming the booking details and the price of the booking.
+* Star ratings rather than rating out of 5.
+* Ensuring the booking system will check bookings on a given date and if there is availability. I have started attempting to implement this however was unable to finish this feature at present due to time constraints and prioritising the MVP.
+
 
 # Testing
+
+## Browser compatibility
+
+| Browser | Fav icon | Forms | CSS |
+| ------- | ---------------- | ----- |---- |
+| Edge | Pass | Pass | Pass |
+| Crome| Fail | Pass | Pass |
+| Opera | Fail | Pass | Pass |
+| Firefox | Pass | Pass | Pass |
+
 ## Responsiveness
 
 | Responsiveness |  |   |  |  | |  |  |  | | Notes |
@@ -487,7 +507,7 @@ This enables the user to easily check their booking details.
 | User can review if all fields filled correctly | Pass |
 | User cannot submit edit review form if review title left blank | Pass |
 | User cannot submit edit review form if review rating left blank | Pass |
-| User cannot submit edit review form if review rating is not between 1-5 | ? |
+| User cannot submit edit review form if review rating is not between 1-5 | Almost |
 | User cannot submit edit review form if review content left blank | Pass |
 | User cannot submit edit review form if booking ID not selected | Pass |
 | Messages show if form filled incorrectly | Pass |
@@ -550,7 +570,6 @@ The errors being picked up in the register page validator are in the automatic f
 
 | File | Validator | Result |
 |--|--|--|
-| reviews.js | ![reviews.js validation](static/assets/images/reviewjsvalid.png) |Pass  |
 | book.js | ![book.js validation](static/assets/images/bookjsvalid.png) | Pass |
 
 The Warnings picked up in the Javascript validator where down to the version of Javascript being used, as arow functions and template literals are only available in ES6. It also wasn't keen on bootstrap as a variable.
@@ -565,12 +584,12 @@ The criteria I applied for this to consider the performance a pass was for the p
 | Home Desktop | ![Database schema](static/assets/images/lighthousehomed.png) | 78 Pass |
 | Facilities Mobile| ![Database schema](static/assets/images/lighthousefacilitiesm.png) | 93 Pass  |
 | Facilities Desktop | ![Database schema](static/assets/images/lighthousefacilitiesd(2).png) | 98 Pass |
-| Book now Mobile| ![Database schema](static/assets/images/lighthouse.png) |   |
-| Book now Desktop | ![Database schema](static/assets/images/lighthouse.png) |  |
-| Reviews Mobile| ![Database schema](static/assets/images/lighthouse.png) |   |
-| Reviews Desktop | ![Database schema](static/assets/images/lighthouse.png) |  |
-| Your Bookings Mobile| ![Database schema](static/assets/images/lighthouse.png) |   |
-| Your Bookings Desktop | ![Database schema](static/assets/images/lighthouse.png) |  |
+| Book now Mobile| ![Database schema](static/assets/images/lighthousebookingd.png) |   |
+| Book now Desktop | ![Database schema](static/assets/images/lighthousebookingd.png) |  |
+| Reviews Mobile| ![Database schema](static/assets/images/lighthousereviewm.png) |   |
+| Reviews Desktop | ![Database schema](static/assets/images/lighthouserebviewd.png) |  |
+| Your Bookings Mobile| ![Database schema](static/assets/images/lighthouseyourbookingm.png) |   |
+| Your Bookings Desktop | ![Database schema](static/assets/images/lighthouseyourbookingd.png) |  |
 | Sign in Mobile| ![Database schema](static/assets/images/lighthousesigninm.png) | 73 Pass  |
 | Sign in Desktop | ![Database schema](static/assets/images/lighthousesignind.png) | 88 Pass |
 | Sign out Mobile| ![Database schema](static/assets/images/lighthousesignoutm.png) |   |

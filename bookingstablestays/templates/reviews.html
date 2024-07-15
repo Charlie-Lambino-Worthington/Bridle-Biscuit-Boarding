@@ -6,13 +6,11 @@
 <div class="container-fluid">
     <div class="col-12 mt-3 left">
         <div class="spacing"></div>
-        <h1>Reviews</h1>
-        <br>
         <div class="row">
             {% for review in reviewlist %}
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <div class="card-body reviewcontent">
+                    <div class="card-body" id="reviewcontent">
                         <div class="image-container">
                             {% if "placeholder" in review.featured_image.url %}
                             <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
@@ -32,7 +30,7 @@
                         {% endif %}
                     </div>
                 </div>
-
+                
             </div>
             {% if forloop.counter|divisibleby:3 %}
         </div>
@@ -72,6 +70,8 @@
     {% endif %}
 </div>
 <div class="spacing"></div>
+</div>
+
 {% endblock content %}
 
 {% block extras %}
