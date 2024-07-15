@@ -19,7 +19,7 @@ p {
 }
 
   .spacing {
-    padding: 45px;
+    padding: 25px;
   }
 
   /*color and padding*/
@@ -197,11 +197,15 @@ div .bookingcard #bookingcard {
     #signupbox,
     #loginbox,
     #logoutbox {
-        padding: 20px !important;
-        width: 100vw !important;
+        width: 100% !important;
         margin-left: 0px !important;
         color: #444444;
         background-color: rgba(187, 187, 255, 0.6);
         text-align: center;
+    }
+    #form {
+        padding: 20px !important;
+        max-width: 100% !important;
+        margin: 0px;
     }
 }

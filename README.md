@@ -248,15 +248,18 @@ The User table is key to the interconnectivity of the backend of the application
 | Bokked on |  DateField |   |
 | User |  CharField | FK |
 | Booking ID |  SlugField   |   FK |
-| Email | EmailField |    |
+| Email | EmailField | FK |
 | Stable ID |  Foreign Key | FK  |
-
-
 
 | Review  |            |   |
 |----------|:-------------:|------:|
-| Category |  CharField | FK |
-
+| title |  CharField |  |
+| user |  ForeignKey | FK |
+| rating |  IntegerField |  |
+| comment |  TextField |  |
+| featured image |  CloudinaryField |  |
+| created on |  DateField |  |
+| Booking ID |  ForeignKey | FK |
 
 | Stables  |            |   |
 |----------|:-------------:|------:|
@@ -271,6 +274,8 @@ The User table is key to the interconnectivity of the backend of the application
 | End date |  DateField |   |
 
 ## User Flow Chart
+
+User flow charts are crucial for web app planning as they facilitate a user-centered design approach, helping to eliminate friction in user journeys and reduce churn by streamlining the user experience. This chart was planned out enable early iteration and refinement of the design for the Bridles and biscuits boarding site, based on a clear visualization of the user's path to achieving their goals within the web app.
 
 ![User flow chart](static/assets/images/lucid.png)
 
@@ -438,6 +443,11 @@ This enables the user to easily check their booking details.
 # Testing
 ## Responsiveness
 
+| Responsiveness |  |   |  |  | |  |  |  | | Notes |
+| ------- | ---------------- | ----- |-----| ------- | ---------------- | ----- | --- | ------- | ---------------- | ----- |
+|  |  Galaxy s8+ |  Galexy s5 | Iphone 6/7/8  | ipad | Ipad Pro | Desktop 1024px | Desktop > 1200px | Tested virtually online |
+| Site is responsive <699px |  Pass  |  Pass  |  Pass  |  N/A | N/A  | N/A | N/A | Gets too small at <275px view width |
+| Site is responsive >= 700px |  N/A  |  N/A  |  N/A  |  Pass |  Pass | Pass | Pass |  |
 
 ## Manual Testing
 
@@ -493,22 +503,27 @@ This enables the user to easily check their booking details.
 | Messages show if form filled incorrectly | Pass |
 | Edit Review buttons only visible on reviews left by logged in user | Pass |
 
+## Bugs
 
+There are unfortunately still a couple of bugs which I haven't had time to rectify before the deadline, however I do not believe they impact MVP. 
 
+The main bug which I hope to fix in the near future is that when submitting the review form if the rating is not between 0-5 when you click the submit review button the form won't submit invalid data so the review won't be saved which is as intended, however the form rather than directing the user to input valid data clears itself as if submitting for some reason. I have yet to figure out why as the same feature in the edit review form works perfectly, so I need to search out where the code for the two forms differs. I have attempted to rectify this with a mixin in the forms.py file however I cannot test the as the database is down and the deadline is in three hours, so this bug may or may not still be in effect.
+
+The second unfortunate bug is that when leaving a review you can currently select your booking ID from any booking ID in the system which is not very secure and rather defeats the point of having the booking ID in the review form to confirm you are a past or current customer reviewing the stables rather than any random person. I have implemented a fix for this but am unable to test it as the database is down and the deadline is in three hours, so this bug may or may not still be in effect.
 
 ## Validation
 ### HTML
 
 | Page | Validator | Result |
 |--|--|--|
-| Index | ![Database schema](static/assets/images/indexhtmlvalid.png) |Pass  |
-| Facilities | ![Database schema](static/assets/images/fachtmlvalid.png) | Pass |
-| Booking form | ![Database schema](static/assets/images/bookhtmlvalid.png) | Pass |
-| Reviews | ![Database schema](static/assets/images/reviewhtmlvalid.png) | Pass |
-| Bookings | ![Database schema](static/assets/images/bookinghtmlvalid.png)  | Pass |
-| Log out | ![Database schema](static/assets/images/outhtmlvalid.png) | Pass |
-| Log in | ![Database schema](static/assets/images/inhtmlvalid.png) | Pass |
-| Register | ![Database schema](static/assets/images/registerhtmlnotvalid.png) | Fail |
+| Index | ![index html validation](static/assets/images/indexhtmlvalid.png) |Pass  |
+| Facilities | ![facilities html validation](static/assets/images/fachtmlvalid.png) | Pass |
+| Booking form | ![book now html validation](static/assets/images/bookhtmlvalid.png) | Pass |
+| Reviews | ![reviews html validation](static/assets/images/reviewhtmlvalid.png) | Pass |
+| Bookings | ![your bookings html validation](static/assets/images/bookinghtmlvalid.png)  | Pass |
+| Log out | ![logout html validation](static/assets/images/outhtmlvalid.png) | Pass |
+| Log in | ![login html validation](static/assets/images/inhtmlvalid.png) | Pass |
+| Register | ![register html validation](static/assets/images/registerhtmlnotvalid.png) | Fail |
 
 The errors being picked up in the register page validator are in the automatic files imported from allauth. I was unable to find the errors to correct or locate these errors.
 
@@ -516,31 +531,52 @@ The errors being picked up in the register page validator are in the automatic f
 
 | Page | Validator | Result |
 |--|--|--|
-| CSS | ![Database schema](static/assets/images/cssvalid.png) |Pass  |
+| CSS | ![css validation](static/assets/images/cssvalid.png) |Pass  |
 
 ### Python
 
 | File | Validator | Result |
 |--|--|--|
-| Project Urls.py | ![Database schema](static/assets/images/prourlspyvalid.png) |Pass  |
-| Settings.py | ![Database schema](static/assets/images/settingspyvalid.png) | Pass |
-| Views.py | ![Database schema](static/assets/images/viewspyvalid.png) | Pass |
-| urls.py | ![Database schema](static/assets/images/urlspyvalid.png) | Pass |
-| forms.py | ![Database schema](static/assets/images/formspyvalid.png)  | Pass |
-| models.py | ![Database schema](static/assets/images/modelspyvalid.png) | Pass |
-| admin.py | ![Database schema](static/assets/images/adminpyvalid.png) | Pass |
+| Project Urls.py | ![urls.py validation](static/assets/images/prourlspyvalid.png) |Pass  |
+| Settings.py | ![setting.py validation](static/assets/images/settingspyvalid.png) | Pass |
+| Views.py | ![views.py validation](static/assets/images/viewspyvalid.png) | Pass |
+| urls.py | ![urls.py validation](static/assets/images/urlspyvalid.png) | Pass |
+| forms.py | ![forms.py validation](static/assets/images/formspyvalid.png)  | Pass |
+| models.py | ![models.py validation](static/assets/images/modelspyvalid.png) | Pass |
+| admin.py | ![admin.py validation](static/assets/images/adminpyvalid.png) | Pass |
 
 
 ### Javascript
 
 | File | Validator | Result |
 |--|--|--|
-| reviews.js | ![Database schema](static/assets/images/bookjsvalid.png) |Pass  |
-| book.js | ![Database schema](static/assets/images/reviewjsvalid.png) | Pass |
+| reviews.js | ![reviews.js validation](static/assets/images/reviewjsvalid.png) |Pass  |
+| book.js | ![book.js validation](static/assets/images/bookjsvalid.png) | Pass |
 
 The Warnings picked up in the Javascript validator where down to the version of Javascript being used, as arow functions and template literals are only available in ES6. It also wasn't keen on bootstrap as a variable.
 
+## Lighthouse Testing
 
+The criteria I applied for this to consider the performance a pass was for the performance score to be a least 70.
+
+| Page | Lighthouse | Result |
+|--|--|--|
+| Home Mobile| ![Database schema](static/assets/images/lighthousehomem.png) | 95 Pass  |
+| Home Desktop | ![Database schema](static/assets/images/lighthousehomed.png) | 78 Pass |
+| Facilities Mobile| ![Database schema](static/assets/images/lighthousefacilitiesm.png) | 93 Pass  |
+| Facilities Desktop | ![Database schema](static/assets/images/lighthousefacilitiesd(2).png) | 98 Pass |
+| Book now Mobile| ![Database schema](static/assets/images/lighthouse.png) |   |
+| Book now Desktop | ![Database schema](static/assets/images/lighthouse.png) |  |
+| Reviews Mobile| ![Database schema](static/assets/images/lighthouse.png) |   |
+| Reviews Desktop | ![Database schema](static/assets/images/lighthouse.png) |  |
+| Your Bookings Mobile| ![Database schema](static/assets/images/lighthouse.png) |   |
+| Your Bookings Desktop | ![Database schema](static/assets/images/lighthouse.png) |  |
+| Sign in Mobile| ![Database schema](static/assets/images/lighthousesigninm.png) | 73 Pass  |
+| Sign in Desktop | ![Database schema](static/assets/images/lighthousesignind.png) | 88 Pass |
+| Sign out Mobile| ![Database schema](static/assets/images/lighthousesignoutm.png) |   |
+| Sign out Desktop | ![Database schema](static/assets/images/lighthousesignoutd.png) |  |
+| Register Mobile| ![Database schema](static/assets/images/lighthouseregisterm.png) | 73 Pass  |
+| Register Desktop | ![Database schema](static/assets/images/lighthouseregisterd.png) | 88 Pass |
 
 # Deployment
 ## GitHub Repository
@@ -571,12 +607,6 @@ CLOUDINARY_URL: (Your cloudinary storage url)</li>
 Once the development phase is successful, the application will undergo a deployment process to Heroku, which may take some time.</li>
 </ol>
 
-# Bugs
-
-
-
-
-
 # Tools and Technologies Used:
 The technologies implemented in this application included HTML5, CSS, Bootstrap, Java Script, Python and Django.
 
@@ -602,7 +632,7 @@ Chat GPT used to create content text.
 
 Font Awesome was used for icons.
 
-Wireframes were built using
+Wireframes were built using https://mockflow.com/
 
 Database diagram built with https://dbdiagram.io/home
 

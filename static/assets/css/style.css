@@ -203,4 +203,9 @@ div .bookingcard #bookingcard {
         background-color: rgba(187, 187, 255, 0.6);
         text-align: center;
     }
+    #form {
+        padding: 20px !important;
+        max-width: 100% !important;
+        margin: 0px;
+    }
 }

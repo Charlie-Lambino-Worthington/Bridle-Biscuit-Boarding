@@ -8,8 +8,14 @@ from .models import Book
 class DateInput(forms.DateInput):
     input_type = 'date'
 
+class RatingValidationMixin:
+    def clean_rating(self):
+        rating = self.cleaned_data.get('rating')
+        if rating < 0 or rating > 5:
+            raise forms.ValidationError("Rating must be between 1 and 5.")
+        return rating
 
-class ReviewForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm, RatingValidationMixin):
     class Meta:
         model = Review
         fields = ('title', 'rating', 'featured_image', 'comment', 'bookingid')
@@ -21,6 +27,12 @@ class ReviewForm(forms.ModelForm):
             "bookingid": "Booking ID",
         }
 
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(ReviewForm, self).__init__(*args, **kwargs)
+        if user is not None:
+            self.fields['bookingid'].queryset = Booking.objects.filter(user=user)
+
     def clean_rating(self):
         rating = self.cleaned_data.get('rating')
         if rating < 0 or rating > 5:
@@ -28,7 +40,7 @@ class ReviewForm(forms.ModelForm):
         return rating
 
 
-class EditForm(forms.ModelForm):
+class EditForm(forms.ModelForm, RatingValidationMixin):
     class Meta:
         model = Review
         fields = ('title', 'rating',  'comment', )
