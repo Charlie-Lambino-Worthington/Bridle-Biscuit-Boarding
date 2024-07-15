@@ -454,11 +454,11 @@ There are several future features I would like to add to this project including:
 
 ## Browser compatibility
 
-| Browser | Fav icon | Forms | CSS |
+| Browser | All pages responsive| Forms | CSS |
 | ------- | ---------------- | ----- |---- |
 | Edge | Pass | Pass | Pass |
-| Crome| Fail | Pass | Pass |
-| Opera | Fail | Pass | Pass |
+| Crome| Pass | Pass | Pass |
+| Opera | Pass | Pass | Pass |
 | Firefox | Pass | Pass | Pass |
 
 ## Responsiveness
