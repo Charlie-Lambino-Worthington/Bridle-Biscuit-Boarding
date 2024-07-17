@@ -10,6 +10,14 @@ class DateInput(forms.DateInput):
 
 
 class ReviewForm(forms.ModelForm):
+    RATINGS = (
+            ('1', '1'),
+            ('2', '2'),
+            ('3', '3'),
+            ('4', '4'),
+            ('5', '5'),
+            )
+    rating = forms.ChoiceField(choices=RATINGS)
     class Meta:
         model = Review
         fields = ('title', 'rating', 'featured_image', 'comment', 'bookingid')
@@ -29,6 +37,14 @@ class ReviewForm(forms.ModelForm):
 
 
 class EditForm(forms.ModelForm):
+    RATINGS = (
+            ('1', '1'),
+            ('2', '2'),
+            ('3', '3'),
+            ('4', '4'),
+            ('5', '5'),
+            )
+    rating = forms.ChoiceField(choices=RATINGS)
     class Meta:
         model = Review
         fields = ('title', 'rating',  'comment', )

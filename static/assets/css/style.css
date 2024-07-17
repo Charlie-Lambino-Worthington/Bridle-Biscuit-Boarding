@@ -152,7 +152,7 @@ footer i:hover {
     height: 100vh;
 }
 
-button, .btn-edit {
+button, .btn-edit, .pagination li {
     width: fit-content;
     background-color: #444444 !important;
     color: #bbb3db !important;

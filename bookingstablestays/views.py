@@ -49,7 +49,6 @@ class AddReviewView(LoginRequiredMixin, View):
 
         if review_form.is_valid():
             review = review_form.save(commit=False)
-            review.user = request.user
             review.save()
             messages.success(request, 'Review added successfully.')
             return redirect('reviews')
@@ -64,7 +63,7 @@ def review_edit(request, review_id):
 
     if request.method == 'POST':
         form = EditForm(request.POST, instance=review)
-        if form.is_valid():
+        if form.is_valid():    
             form.save()
             messages.success(request, 'Review updated successfully.')
             return redirect('reviews')  # Redirect to reviews page after editing  # noqa
