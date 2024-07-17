@@ -507,7 +507,7 @@ There are several future features I would like to add to this project including:
 | User can review if all fields filled correctly | Pass |
 | User cannot submit edit review form if review title left blank | Pass |
 | User cannot submit edit review form if review rating left blank | Pass |
-| User cannot submit edit review form if review rating is not between 1-5 | Almost |
+| User cannot submit edit review form if review rating is not between 1-5 | Pass |
 | User cannot submit edit review form if review content left blank | Pass |
 | User cannot submit edit review form if booking ID not selected | Pass |
 | Messages show if form filled incorrectly | Pass |
@@ -527,9 +527,7 @@ There are several future features I would like to add to this project including:
 
 There are unfortunately still a couple of bugs which I haven't had time to rectify before the deadline, however I do not believe they impact MVP. 
 
-The main bug which I hope to fix in the near future is that when submitting the review form if the rating is not between 0-5 when you click the submit review button the form won't submit invalid data so the review won't be saved which is as intended, however the form rather than directing the user to input valid data clears itself as if submitting for some reason. I have yet to figure out why as the same feature in the edit review form works perfectly, so I need to search out where the code for the two forms differs. I have attempted to rectify this with a mixin in the forms.py file however I cannot test the as the database is down and the deadline is in three hours, so this bug may or may not still be in effect.
-
-The second unfortunate bug is that when leaving a review you can currently select your booking ID from any booking ID in the system which is not very secure and rather defeats the point of having the booking ID in the review form to confirm you are a past or current customer reviewing the stables rather than any random person. I have implemented a fix for this but am unable to test it as the database is down and the deadline is in three hours, so this bug may or may not still be in effect.
+The main bug I want to fix in the near future is that when leaving a review you can currently select your booking ID from any booking ID in the system which is not very secure and rather defeats the point of having the booking ID in the review form to confirm you are a past or current customer reviewing the stables rather than any random person. I have implemented a fix for this but am unable to test it as the database is down and the deadline is in three hours, so this bug may or may not still be in effect.
 
 ## Validation
 ### HTML

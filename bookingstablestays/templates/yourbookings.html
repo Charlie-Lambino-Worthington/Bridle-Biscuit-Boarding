@@ -56,11 +56,11 @@
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
             <li>
-                <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn-pagination">&laquo; PREV</a>
             </li>
             {% endif %}
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            <li><a href="?page={{ page_obj.next_page_number }}" class="btn-pagination">NEXT &raquo;</a></li>
             {% endif %}
         </ul>
 
@@ -74,16 +74,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <a href="{% url 'yourbookings' %}"><button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button> </a>
             </div>
             <div class="modal-body">
                 Are you sure you want to cancel this booking?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a id="deleteConfirm" class="btn">Delete</a>
+                <a href="{% url 'yourbookings' %}"> <button type="button" class="btn btn-secondary" href="{% url 'yourbookings' %}" data-dismiss="modal">Close</button></a> 
+                <a id="deleteConfirm" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>

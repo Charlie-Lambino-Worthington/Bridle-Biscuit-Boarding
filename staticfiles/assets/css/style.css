@@ -185,6 +185,19 @@ button, .btn-edit {
     list-style-type: none;
 }
 
+/* pagination buttons*/
+
+ .btn-pagination {
+    width: fit-content;
+    background-color: #444444 !important;
+    color: #bbb3db !important;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    align-self: center;
+    border-color: #444444 !important;
+}
+
 /*your bookings*/
 
 div .bookingcard #bookingcard {

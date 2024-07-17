@@ -152,7 +152,7 @@ footer i:hover {
     height: 100vh;
 }
 
-button, .btn-edit, .pagination li {
+button, .btn-edit {
     width: fit-content;
     background-color: #444444 !important;
     color: #bbb3db !important;
@@ -179,6 +179,17 @@ button, .btn-edit, .pagination li {
     margin-left: 40vw;
     text-align: center;
     
+}
+
+ #p {
+    width: fit-content;
+    background-color: #444444 !important;
+    color: #bbb3db !important;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    align-self: center;
+    border-color: #444444 !important;
 }
 
 .loginbox li {
