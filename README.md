@@ -525,9 +525,9 @@ There are several future features I would like to add to this project including:
 
 ## Bugs
 
-There are unfortunately still a couple of bugs which I haven't had time to rectify before the deadline, however I do not believe they impact MVP. 
+There are unfortunately still a slight bug which I haven't had time to rectify before the deadline, however I do not believe they impact MVP. 
 
-The main bug I want to fix in the near future is that when leaving a review you can currently select your booking ID from any booking ID in the system which is not very secure and rather defeats the point of having the booking ID in the review form to confirm you are a past or current customer reviewing the stables rather than any random person. I have implemented a fix for this but am unable to test it as the database is down and the deadline is in three hours, so this bug may or may not still be in effect.
+The main bug I want to fix in the near future is that when leaving a review you can currently select your booking ID from any booking ID in the system which is not very secure and rather defeats the point of having the booking ID in the review form to confirm you are a past or current customer reviewing the stables rather than any random person. I have attempted to fix this in a couple of ways but with the deadline looming it will have to wait and become a future feature.
 
 ## Validation
 ### HTML
