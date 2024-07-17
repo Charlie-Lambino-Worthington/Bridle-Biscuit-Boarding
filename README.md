@@ -704,3 +704,5 @@ Serhat Teker: https://tech.serhatteker.com/post/2020-06/custom-signup-view-in-dj
 Iris Smok: https://github.com/Iris-Smok/The-Healthy-Family-PP4/blob/main/recipes/views.py
 
 bky201: https://github.com/bky201/HotelBooking
+
+Stack overflow for the solution to my bug allowing people to submit with invalid data for the rating: https://stackoverflow.com/questions/70865638/django-model-form-integer-as-drop-down

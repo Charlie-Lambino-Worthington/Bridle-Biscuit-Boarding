@@ -29,12 +29,6 @@ class ReviewForm(forms.ModelForm):
             "bookingid": "Booking ID",
         }  
 
-    def clean_rating(self):
-        rating = self.cleaned_data.get('rating')
-        if rating < 0 or rating > 5:
-            raise forms.ValidationError("Rating must be between 1 and 5.")
-        return rating
-
 
 class EditForm(forms.ModelForm):
     RATINGS = (
@@ -53,12 +47,6 @@ class EditForm(forms.ModelForm):
             "rating": "Rating out of five",
             "comment": "Review",
         }
-
-    def clean_rating(self):
-        rating = self.cleaned_data.get('rating')
-        if rating < 0 or rating > 5:
-            raise forms.ValidationError("Rating must be between 1 and 5.")
-        return rating
 
 
 class BookForm(forms.ModelForm):
