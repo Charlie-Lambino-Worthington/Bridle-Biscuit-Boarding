@@ -210,9 +210,9 @@ Allows customers to make an informed decision and leave reviews for future custo
 
 Acceptance criteria
 
-·         View star ratings and comments left by previous customers when not logged in
+·         View ratings and comments left by previous customers when not logged in
 
-·         Ability to leave a star rating and review when logged in
+·         Ability to leave a rating and review when logged in
 
 ·         Only able to leave a review with a valid booking id so users know all reviews are from real previous customers
 
@@ -220,9 +220,9 @@ Acceptance criteria
 
 Tasks
 
-o   View star ratings and comments left by previous customers when not logged in
+o   View ratings and comments left by previous customers when not logged in
 
-o   Ability to leave a star rating and review when logged in
+o   Ability to leave a rating and review when logged in
 
 o   Only able to leave a review with a valid booking id so users know all reviews are from real previous customers
 
