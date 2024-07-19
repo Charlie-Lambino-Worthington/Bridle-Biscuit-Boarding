@@ -448,6 +448,7 @@ There are several future features I would like to add to this project including:
 * Sending an email automatically when a booking is made confirming the booking details and the price of the booking.
 * Star ratings rather than rating out of 5.
 * Ensuring the booking system will check bookings on a given date and if there is availability. I have started attempting to implement this however was unable to finish this feature at present due to time constraints and prioritising the MVP.
+* Add map and address to home page.
 
 
 # Testing
