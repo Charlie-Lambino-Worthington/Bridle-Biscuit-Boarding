@@ -458,6 +458,7 @@ There are several future features I would like to add to this project including:
 #### User story: As a user I want a welcoming homepage which tells me a bit about Bridles and Biscuits Boarding, its owners, it’s location and its ethos.
 
 | Acceptance criteria | Pass or Fail | 
+| ------- | ---------------- |
 | Logo designed and implemented | Pass | 
 | Welcoming colour scheme | Pass  | 
 |  Neat and elegant design  | Pass | 
@@ -470,6 +471,7 @@ There are several future features I would like to add to this project including:
 #### User Story: As a user I want a facilities page which tells what Bridles and Biscuits Boarding offers.
 
 | Acceptance criteria | Pass or Fail | 
+| ------- | ---------------- |
 |  Sand school section describing them and showing pictures of them in use
 | Pass  |
 | Cross country route section describing them and showing pictures of them in use | Pass  |
@@ -481,6 +483,7 @@ There are several future features I would like to add to this project including:
 #### User Story:As a user I want a booking form so that I can book a stay for my horse or donkey at bridles and biscuits boarding.
 
 | Acceptance criteria | Pass or Fail | 
+| ------- | ---------------- |
 | Only fillable when logged in | Pass  |
 | Input for horse/ donkey name | Pass  |
 | Input for feeding requirements | Pass  |
@@ -493,6 +496,7 @@ There are several future features I would like to add to this project including:
 #### User Story: As a user I want a page to see my booking details so I can check them on the website.
 
 | Acceptance criteria | Pass or Fail | 
+| ------- | ---------------- |
 | Only displays bookings from the logged in user | Pass  |
 | Displays in order of recency | Pass  |
 | Displays all logged in user’s booking details | Pass  |
@@ -500,6 +504,7 @@ There are several future features I would like to add to this project including:
 #### User Story: As a user I want a log in/out and register function so that only I can access my details.
 
 | Acceptance criteria | Pass or Fail |
+| ------- | ---------------- |
 | Forms only fillable when logged in  | Pass  |
 |  Booking details only viewable when logged in  | Pass  |
 |  Reviewing only possible when logged in  | Pass  |
@@ -512,6 +517,7 @@ There are several future features I would like to add to this project including:
 #### User Story:As a user I want a reviews page so that I can make an informed decision based on other people’s experiences at Bridles and Biscuits Boarding
 
 | Acceptance criteria | Pass or Fail |
+| ------- | ---------------- |
 | View ratings and comments left by previous customers when not logged in | Pass |
 | Ability to leave a rating and review when logged in | Pass |
 | Only able to leave a review with a valid booking id so users know all reviews are from real previous customers | Fail there is a slight bug in the code which will be fixed in future features |
